@@ -15,6 +15,6 @@ namespace DecideMyLunch
    
     public partial class App : Application
     {
-        public static string DatabaseLocation;
+        public static string DatabaseLocation = "/decide-my-lunch";
     }
 }

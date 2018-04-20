@@ -10,13 +10,13 @@ namespace DecideMyLunch
 {
     public class LunchAlgorithm
     {
-        private static IDataStore _dataService;
-        private static Random _generator;
+        private IDataStore _dataService;
+        private Random _generator;
         public LunchAlgorithm(IDataStore dataService)
         {
             _dataService = dataService;
         }
-        public static Restaurant GetRestaurant()
+        public Restaurant GetRestaurant()
         {
             var restaurants = _dataService.GetRestaurants();
             var index = _generator.Next(maxValue:restaurants.Count);
