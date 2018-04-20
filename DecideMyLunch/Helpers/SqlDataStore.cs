@@ -18,7 +18,7 @@ namespace DecideMyLunch.Helpers
                 try
                 {
                     conn.CreateTable<Restaurant>();
-                    conn.Insert(item);
+                    var rows = conn.Insert(item);
                 }
                 catch (Exception e)
                 {

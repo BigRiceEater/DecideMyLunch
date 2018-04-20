@@ -73,7 +73,7 @@ namespace DecideMyLunch.ViewModels
             DecideLunchCommand = new DecideLunchCommand(this);
             AddShopCommand = new AddShopCommand(this);
             Result = "Nothing yet";
-            SelectedRestaurant = null;
+            SelectedRestaurant = new Restaurant();
             _data = new SqlDataStore();
             _lunchAlgorithm = new LunchAlgorithm(_data);
 
