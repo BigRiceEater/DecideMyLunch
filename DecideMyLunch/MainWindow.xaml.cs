@@ -26,7 +26,6 @@ namespace DecideMyLunch
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
     }
 }

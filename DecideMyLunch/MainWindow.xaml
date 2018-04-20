@@ -4,15 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DecideMyLunch"
+        xmlns:viewmodel="clr-namespace:DecideMyLunch.ViewModels"
         mc:Ignorable="d"
         Title="Decide Lunch!" Height="350" Width="525">
+    <Window.DataContext>
+        <viewmodel:MainViewModel/>
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="10"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <StackPanel x:Name="ControlsStack" Grid.Column="0" Margin="20">
-            <Button Command="{Binding DecideLunchCommand}">Decide</Button>
+            <Button Command="{Binding DecideLunchCommand}">Decide for me</Button>
+            <Button Command="{Binding DecideLunchCommand}">Manage Restaurants</Button>
         </StackPanel>
         
         <StackPanel x:Name="OutputStack" Grid.Column="1" Margin="20">
