@@ -10,7 +10,7 @@ namespace DecideMyLunch.Models
     public class Restaurant
     {
         [PrimaryKey, AutoIncrement]
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public bool Disabled { get; set; }
     }

@@ -70,17 +70,19 @@ namespace DecideMyLunch.ViewModels
 
         public MainViewModel()
         {
-            _handler = new RestaurantHandler();
-            _handler.Add(new Restaurant() { Name = "Hello" });
-            _handler.Add(new Restaurant() { Name = "Bye" });
             DecideLunchCommand = new DecideLunchCommand(this);
             AddShopCommand = new AddShopCommand(this);
             Result = "Nothing yet";
-            SelectedRestaurant = _handler.Items.Last();
+            SelectedRestaurant = null;
             _data = new SqlDataStore();
             _lunchAlgorithm = new LunchAlgorithm(_data);
 
+            _handler = new RestaurantHandler();
 
+            foreach (var item in _data.GetRestaurants())
+            {
+                _handler.Add(item);
+            }
 
             //Restaurants = new ObservableCollection<Restaurant>(_data.GetRestaurants());
         }
