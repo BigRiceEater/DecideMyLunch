@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using DecideMyLunch.Commands;
+using DecideMyLunch.ViewModels;
+
 namespace DecideMyLunch
 {
     /// <summary>
@@ -23,6 +26,7 @@ namespace DecideMyLunch
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainViewModel();
         }
     }
 }
