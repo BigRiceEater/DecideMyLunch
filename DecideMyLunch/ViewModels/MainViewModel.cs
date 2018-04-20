@@ -16,6 +16,13 @@ using DecideMyLunch.Models;
 
 namespace DecideMyLunch.ViewModels
 {
+    //TODO: Style Restaurant labels
+    //TODO: Make ID label readonly
+    //TODO: Add update button
+    //TODO: Add viewgroup border to restaurant labels
+    //TODO: Add delete button
+    //TODO: Make disable button actually work
+
     public class MainViewModel : INotifyPropertyChanged
     {
         private string _result;
@@ -73,10 +80,10 @@ namespace DecideMyLunch.ViewModels
             DecideLunchCommand = new DecideLunchCommand(this);
             AddShopCommand = new AddShopCommand(this);
             Result = "Nothing yet";
-            SelectedRestaurant = new Restaurant();
+            SelectedRestaurant = new Restaurant(); //TODO: Default disable to true in new object
             _data = new SqlDataStore();
             _lunchAlgorithm = new LunchAlgorithm(_data);
-
+            //TODO: Remove handler to use observable collection
             _handler = new RestaurantHandler();
 
             foreach (var item in _data.GetRestaurants())

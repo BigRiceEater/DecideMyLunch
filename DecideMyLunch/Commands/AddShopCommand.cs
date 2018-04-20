@@ -20,7 +20,7 @@ namespace DecideMyLunch.Commands
         public bool CanExecute (object parameter)
         {
             var item = parameter as Restaurant;
-            // if any of the fields are empty then return false;
+            //TODO: If any of the fields are empty then return false;
             return true;
         }
 

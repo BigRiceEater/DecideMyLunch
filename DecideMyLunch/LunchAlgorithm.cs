@@ -8,6 +8,7 @@ using DecideMyLunch.Models;
 
 namespace DecideMyLunch
 {
+    //TODO: Move LunchAlgorithm to Helper folder
     public class LunchAlgorithm
     {
         private IDataStore _dataService;
@@ -21,6 +22,7 @@ namespace DecideMyLunch
             var restaurants = _dataService.GetRestaurants();
             var index = _generator.Next(maxValue:restaurants.Count);
             return restaurants[index];
+            //TODO: Check if restaurant is actually disabled before returning result.
         }
     }
 }
