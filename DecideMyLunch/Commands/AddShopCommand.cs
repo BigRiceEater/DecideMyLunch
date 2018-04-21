@@ -11,8 +11,8 @@ namespace DecideMyLunch.Commands
 {
     public class AddShopCommand : ICommand
     {
-        private MainViewModel _viewmodel;
-        public AddShopCommand(MainViewModel viewmodel)
+        private AddShopViewModel _viewmodel;
+        public AddShopCommand(AddShopViewModel viewmodel)
         {
             _viewmodel = viewmodel;
         }

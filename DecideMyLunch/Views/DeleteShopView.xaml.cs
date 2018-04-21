@@ -13,17 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using DecideMyLunch.Commands;
-using DecideMyLunch.ViewModels;
-
-namespace DecideMyLunch
+namespace DecideMyLunch.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for DeleteShopView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DeleteShopView : UserControl
     {
-        public MainWindow()
+        public DeleteShopView()
         {
             InitializeComponent();
         }

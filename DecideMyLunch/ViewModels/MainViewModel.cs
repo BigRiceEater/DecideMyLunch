@@ -22,29 +22,65 @@ namespace DecideMyLunch.ViewModels
 
     public class MainViewModel : INotifyPropertyChanged
     {
+
         private string _result;
         public string Result
         {
-            get { return _result; }
+            get => _result;
             set { _result = value; OnPropertyChanged(nameof(Result));}
         }
 
-        private string _status;
-        public string Status
+        private string _applicationStatus;
+        public string ApplicationStatus
         {
-            get { return _status; }
-            set { _status = value; OnPropertyChanged(nameof(Status)); }
+            get => _applicationStatus;
+            set { _applicationStatus = value; OnPropertyChanged(nameof(ApplicationStatus)); }
         }
 
-        private Restaurant _selectedRestaurant;
-
-        public Restaurant SelectedRestaurant
+        private AddShopViewModel _addShopViewModel;
+        public AddShopViewModel AddShopViewModel
         {
-            get { return _selectedRestaurant; }
-            set { _selectedRestaurant = value; OnPropertyChanged(nameof(SelectedRestaurant)); }
+            get => _addShopViewModel;
+            set
+            {
+                _addShopViewModel = value; OnPropertyChanged(nameof(AddShopViewModel));
+            }
         }
 
-        public ObservableCollection<Restaurant> Restaurants { get; set; }
+        private Visibility _addShopViewVisibility;
+        public Visibility AddShopViewVisibility
+        {
+            get => _addShopViewVisibility;
+            set { _addShopViewVisibility = value; OnPropertyChanged(nameof(AddShopViewVisibility)); }
+        }
+
+        private EditShopViewModel _editShopViewModel;
+        public EditShopViewModel EditShopViewModel
+        {
+            get => _editShopViewModel;
+            set { _editShopViewModel = value; OnPropertyChanged(nameof(EditShopViewModel)); }
+        }
+
+        private Visibility _editShopViewVisibility;
+        public Visibility EditShopViewVisibility
+        {
+            get => _editShopViewVisibility;
+            set { _editShopViewVisibility = value; OnPropertyChanged(nameof(EditShopViewVisibility));}
+        }
+
+        private DeleteShopViewModel _deleteShopViewModel;
+        public DeleteShopViewModel DeleteShopViewModel
+        {
+            get => _deleteShopViewModel;
+            set { _deleteShopViewModel = value; OnPropertyChanged(nameof(DeleteShopViewModel));}
+        }
+
+        private Visibility _deleteShopViewVisibility;
+        public Visibility DeleteShopViewVisibility
+        {
+            get => _deleteShopViewVisibility;
+            set { _deleteShopViewVisibility = value; OnPropertyChanged(nameof(DeleteShopViewVisibility)); }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]
@@ -54,42 +90,54 @@ namespace DecideMyLunch.ViewModels
         }
 
         public ICommand DecideLunchCommand { get; set; }
-        public ICommand AddShopCommand { get; set; }
-        private readonly IDataStore _data;
-        private LunchAlgorithm _lunchAlgorithm;
+        public ICommand ShowAddShopCommand { get; set; }
+        public ICommand ShowEditShopCommand { get; set; }
+        public ICommand ShowDeleteShopCommand { get; set; }
 
+        private LunchAlgorithm _lunchAlgorithm;
 
         public MainViewModel()
         {
             DecideLunchCommand = new DecideLunchCommand(this);
-            AddShopCommand = new AddShopCommand(this);
-            Result = "Nothing yet";
-            SelectedRestaurant = new Restaurant(); //TODO: Default disable to true in new object
+            ShowAddShopCommand = new ShowAddShopCommand(this);
+            ShowEditShopCommand = new ShowEditShopCommand(this);
+            ShowDeleteShopCommand = new ShowDeleteShopCommand(this);
 
-            _data = new SqlDataStore();
-            _data.DidInsertRestaurant = new DidInsertRestaurant(
-                item =>
-                {
-                    Restaurants.Add(item);
-                    Status = String.Format("Successfully added {0}",item.Name);
-                }
-            );
-            _lunchAlgorithm = new LunchAlgorithm(_data);
-            Restaurants = new ObservableCollection<Restaurant>(_data.GetRestaurants());
-            Status = "Ready";
+            Result = "Nothing yet";
+            ApplicationStatus = "Ready";
+
+            IDataStore data = new SqlDataStore
+            {
+                DidInsertRestaurant = new DidInsertRestaurant(item =>
+                    {
+                        ApplicationStatus = String.Format("Successfully added {0}", item.Name);
+                    }
+                )};
+
+            _lunchAlgorithm = new LunchAlgorithm(data);
+
+            AddShopViewModel = new AddShopViewModel(data);
+            AddShopViewVisibility = Visibility.Collapsed;
         }
 
         public void DecideLunch()
         {
             Result = "Yes!";
-            
         }
 
-        public void AddShop(Restaurant item)
+        public void ShowAddShop()
         {
-            _data.InsertRestaurant(item);
+            throw new NotImplementedException();
         }
 
+        public void ShowEditShop()
+        {
+            throw new NotImplementedException();
+        }
 
+        public void ShowDeleteShop()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
