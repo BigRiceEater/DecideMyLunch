@@ -26,8 +26,8 @@ namespace DecideMyLunch.Commands
 
         public void Execute(object parameter)
         {
-            var item = parameter as Restaurant;
-            _viewmodel.AddShop(item);
+            var shop = parameter as Restaurant;
+            _viewmodel.AddShop(shop);
         }
 
         public event EventHandler CanExecuteChanged;

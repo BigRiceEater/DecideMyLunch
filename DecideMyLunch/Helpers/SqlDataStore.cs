@@ -9,6 +9,7 @@ using DecideMyLunch.Models;
 using SQLite;
 namespace DecideMyLunch.Helpers
 {
+    // TODO: use GUID instead of relying on numbers?
     public class SqlDataStore : IDataStore
     {
         public void InsertRestaurant(Restaurant item)
@@ -18,6 +19,7 @@ namespace DecideMyLunch.Helpers
                 try
                 {
                     conn.CreateTable<Restaurant>();
+                    item.ID = this.GenerateGuid();
                     var rows = conn.Insert(item);
                 }
                 catch (Exception e)
@@ -75,6 +77,30 @@ namespace DecideMyLunch.Helpers
                 }
             }
             return items;
+        }
+
+        private string GenerateGuid()
+        {
+            
+            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+            {
+                string id = "undefined";
+                try
+                {
+                    bool isGuidInvalid = true;
+                    do {
+                        id = Guid.NewGuid().ToString();
+                        var matchedList = conn.Table<Restaurant>().Where(i => i.ID == id).ToList();
+                        isGuidInvalid = matchedList.FirstOrDefault() != null;
+                    } while (isGuidInvalid);
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                }
+
+                return id;
+            }
         }
     }
 }
