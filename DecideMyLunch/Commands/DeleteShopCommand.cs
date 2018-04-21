@@ -26,7 +26,7 @@ namespace DecideMyLunch.Commands
         public void Execute(object parameter)
         {
             var shop = parameter as Restaurant;
-            _vm?.DeleteShop(shop)
+            _vm?.DeleteShop(shop);
         }
 
         public event EventHandler CanExecuteChanged;
