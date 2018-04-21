@@ -16,10 +16,8 @@ using DecideMyLunch.Models;
 
 namespace DecideMyLunch.ViewModels
 {
-    //TODO: Style Restaurant labels
-    //TODO: Make ID label readonly
+    //BUG: Select shop, change name, add shop -> changes record, not new entry.
     //TODO: Add update button
-    //TODO: Add viewgroup border to restaurant labels
     //TODO: Add delete button
     //TODO: Make disable button actually work
 
