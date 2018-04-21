@@ -13,7 +13,7 @@ using DecideMyLunch.Models;
 
 namespace DecideMyLunch.ViewModels
 {
-    public abstract class ShopViewModel : INotifyPropertyChanged
+    public abstract class ShopViewModel : BaseViewModel
     {
         private Visibility _visibility;
 
@@ -35,14 +35,6 @@ namespace DecideMyLunch.ViewModels
         {
             get => _cancelCommand;
             set { _cancelCommand = value; OnPropertyChanged(nameof(CancelCommand));}
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         protected IDataStore _data;

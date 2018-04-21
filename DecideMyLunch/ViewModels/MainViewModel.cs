@@ -20,7 +20,7 @@ namespace DecideMyLunch.ViewModels
     //TODO: Add delete button
     //TODO: Make disable button actually work
 
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : BaseViewModel
     {
 
         private string _result;
@@ -61,21 +61,13 @@ namespace DecideMyLunch.ViewModels
             set { _deleteShopViewModel = value; OnPropertyChanged(nameof(DeleteShopViewModel));}
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
         public ICommand DecideLunchCommand { get; set; }
         public ICommand ShowAddShopCommand { get; set; }
         public ICommand ShowEditShopCommand { get; set; }
         public ICommand ShowDeleteShopCommand { get; set; }
 
         private LunchAlgorithm _lunchAlgorithm;
-
-        public MainViewModel()
+        public MainViewModel() 
         {
             DecideLunchCommand = new DecideLunchCommand(this);
             ShowAddShopCommand = new ShowAddShopCommand(this);
