@@ -7,6 +7,8 @@ using DecideMyLunch.Models;
 
 namespace DecideMyLunch.Interfaces
 {
+    public delegate void DidInsertRestaurant(Restaurant shop);
+
     public interface IDataStore
     {
         void InsertRestaurant(Restaurant item);
@@ -14,5 +16,6 @@ namespace DecideMyLunch.Interfaces
         void UpdateRestaurant(Restaurant item);
 
         List<Restaurant> GetRestaurants();
+        DidInsertRestaurant DidInsertRestaurant { get; set; }
     }
 }

@@ -21,6 +21,10 @@ namespace DecideMyLunch.Helpers
                     conn.CreateTable<Restaurant>();
                     item.ID = this.GenerateGuid();
                     var rows = conn.Insert(item);
+                    if (rows > 0)
+                    {
+                        DidInsertRestaurant?.Invoke(item);
+                    }
                 }
                 catch (Exception e)
                 {
@@ -78,6 +82,8 @@ namespace DecideMyLunch.Helpers
             }
             return items;
         }
+
+        public DidInsertRestaurant DidInsertRestaurant { get; set; }
 
         private string GenerateGuid()
         {

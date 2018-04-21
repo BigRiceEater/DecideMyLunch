@@ -16,7 +16,6 @@ using DecideMyLunch.Models;
 
 namespace DecideMyLunch.ViewModels
 {
-    //BUG: Select shop, change name, add shop -> changes record, not new entry.
     //TODO: Add update button
     //TODO: Add delete button
     //TODO: Make disable button actually work
@@ -38,27 +37,7 @@ namespace DecideMyLunch.ViewModels
             set { _selectedRestaurant = value; OnPropertyChanged(nameof(SelectedRestaurant)); }
         }
 
-        public List<Restaurant> Restaurants
-        {
-            get { return _handler.Items; }
-        }
-
-        public class RestaurantHandler
-        {
-            public RestaurantHandler()
-            {
-                Items = new List<Restaurant>();
-            }
-
-            public List<Restaurant> Items { get; private set; }
-
-            public void Add(Restaurant item)
-            {
-                Items.Add(item);
-            }
-        }
-
-        private RestaurantHandler _handler;
+        public ObservableCollection<Restaurant> Restaurants { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]
@@ -79,17 +58,12 @@ namespace DecideMyLunch.ViewModels
             AddShopCommand = new AddShopCommand(this);
             Result = "Nothing yet";
             SelectedRestaurant = new Restaurant(); //TODO: Default disable to true in new object
+
             _data = new SqlDataStore();
+            _data.DidInsertRestaurant = new DidInsertRestaurant(item => {  Restaurants.Add(item);});
             _lunchAlgorithm = new LunchAlgorithm(_data);
-            //TODO: Remove handler to use observable collection
-            _handler = new RestaurantHandler();
+            Restaurants = new ObservableCollection<Restaurant>(_data.GetRestaurants());
 
-            foreach (var item in _data.GetRestaurants())
-            {
-                _handler.Add(item);
-            }
-
-            //Restaurants = new ObservableCollection<Restaurant>(_data.GetRestaurants());
         }
 
         public void DecideLunch()
