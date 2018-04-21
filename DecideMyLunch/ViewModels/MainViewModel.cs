@@ -118,6 +118,12 @@ namespace DecideMyLunch.ViewModels
 
             AddShopViewModel = new AddShopViewModel(data);
             AddShopViewVisibility = Visibility.Collapsed;
+
+            EditShopViewModel = new EditShopViewModel(data);
+            EditShopViewVisibility = Visibility.Collapsed;
+
+            DeleteShopViewModel = new DeleteShopViewModel(data);
+            DeleteShopViewVisibility = Visibility.Collapsed;
         }
 
         public void DecideLunch()
