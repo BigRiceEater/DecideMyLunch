@@ -29,6 +29,13 @@ namespace DecideMyLunch.ViewModels
             set { _result = value; OnPropertyChanged(nameof(Result));}
         }
 
+        private string _status;
+        public string Status
+        {
+            get { return _status; }
+            set { _status = value; OnPropertyChanged(nameof(Status)); }
+        }
+
         private Restaurant _selectedRestaurant;
 
         public Restaurant SelectedRestaurant
@@ -60,7 +67,13 @@ namespace DecideMyLunch.ViewModels
             SelectedRestaurant = new Restaurant(); //TODO: Default disable to true in new object
 
             _data = new SqlDataStore();
-            _data.DidInsertRestaurant = new DidInsertRestaurant(item => {  Restaurants.Add(item);});
+            _data.DidInsertRestaurant = new DidInsertRestaurant(
+                item =>
+                {
+                    Restaurants.Add(item);
+                    Status = String.Format("Successfully added {0}",item.Name);
+                }
+            );
             _lunchAlgorithm = new LunchAlgorithm(_data);
             Restaurants = new ObservableCollection<Restaurant>(_data.GetRestaurants());
 
