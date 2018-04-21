@@ -78,6 +78,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\DeleteShopCommand.cs" />
+    <Compile Include="Commands\EditShopCommand.cs" />
     <Compile Include="Commands\ShowDeleteShopCommand.cs" />
     <Compile Include="Commands\ShowEditShopCommand.cs" />
     <Compile Include="ViewModels\DeleteShopViewModel.cs" />
