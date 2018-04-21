@@ -133,17 +133,23 @@ namespace DecideMyLunch.ViewModels
 
         public void ShowAddShop()
         {
-            throw new NotImplementedException();
+            AddShopViewVisibility = Visibility.Visible;
+            EditShopViewVisibility = Visibility.Collapsed;
+            DeleteShopViewVisibility = Visibility.Collapsed;
         }
 
         public void ShowEditShop()
         {
-            throw new NotImplementedException();
+            AddShopViewVisibility = Visibility.Collapsed;
+            EditShopViewVisibility = Visibility.Visible;
+            DeleteShopViewVisibility = Visibility.Collapsed;
         }
 
         public void ShowDeleteShop()
         {
-            throw new NotImplementedException();
+            AddShopViewVisibility = Visibility.Collapsed;
+            EditShopViewVisibility = Visibility.Collapsed;
+            DeleteShopViewVisibility = Visibility.Visible;
         }
     }
 }
