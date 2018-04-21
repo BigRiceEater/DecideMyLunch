@@ -29,13 +29,6 @@ namespace DecideMyLunch.ViewModels
             set { _result = value; OnPropertyChanged(nameof(Result));}
         }
 
-        private string _status;
-        public string Status
-        {
-            get { return _status; }
-            set { _status = value; OnPropertyChanged(nameof(Status)); }
-        }
-
         private Restaurant _selectedRestaurant;
 
         public Restaurant SelectedRestaurant
@@ -45,6 +38,7 @@ namespace DecideMyLunch.ViewModels
         }
 
         public ObservableCollection<Restaurant> Restaurants { get; set; }
+        public ObservableCollection<String> Status { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         [NotifyPropertyChangedInvocator]
@@ -71,11 +65,12 @@ namespace DecideMyLunch.ViewModels
                 item =>
                 {
                     Restaurants.Add(item);
-                    Status = String.Format("Successfully added {0}",item.Name);
+                    Status.Add(String.Format("Successfully added {0}",item.Name));
                 }
             );
             _lunchAlgorithm = new LunchAlgorithm(_data);
             Restaurants = new ObservableCollection<Restaurant>(_data.GetRestaurants());
+            Status = new ObservableCollection<string>();
 
         }
 

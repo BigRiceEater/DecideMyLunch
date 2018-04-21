@@ -17,7 +17,8 @@ namespace DecideMyLunch.Helpers
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
                 try
-                {
+                {   
+                    //TODO: Check if shopname already exists
                     conn.CreateTable<Restaurant>();
                     item.ID = this.GenerateGuid();
                     var rows = conn.Insert(item);
@@ -67,6 +68,7 @@ namespace DecideMyLunch.Helpers
 
         public List<Restaurant> GetRestaurants()
         {
+            //TODO: Order by A-Z
             var items = new List<Restaurant>();
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
