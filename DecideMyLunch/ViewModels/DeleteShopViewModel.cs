@@ -21,7 +21,7 @@ namespace DecideMyLunch.ViewModels
 
         public void DeleteShop(Restaurant shop)
         {
-            throw new NotImplementedException();
+            _data.DeleteRestaurant(shop);
         }
     }
 }

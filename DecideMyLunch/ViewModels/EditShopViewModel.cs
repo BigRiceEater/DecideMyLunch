@@ -22,7 +22,7 @@ namespace DecideMyLunch.ViewModels
 
         public void UpdateShop(Restaurant shop)
         {
-            throw new NotImplementedException();
+            _data.UpdateRestaurant(shop);
         }
     }
 }
