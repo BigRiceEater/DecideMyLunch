@@ -82,6 +82,7 @@
     <Compile Include="Commands\ShowEditShopCommand.cs" />
     <Compile Include="ViewModels\DeleteShopViewModel.cs" />
     <Compile Include="ViewModels\EditShopViewModel.cs" />
+    <Compile Include="ViewModels\ShopViewModel.cs" />
     <Compile Include="Views\AddShopView.xaml.cs">
       <DependentUpon>AddShopView.xaml</DependentUpon>
     </Compile>
