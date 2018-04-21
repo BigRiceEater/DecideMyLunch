@@ -47,13 +47,6 @@ namespace DecideMyLunch.ViewModels
             }
         }
 
-        private Visibility _addShopViewVisibility;
-        public Visibility AddShopViewVisibility
-        {
-            get => _addShopViewVisibility;
-            set { _addShopViewVisibility = value; OnPropertyChanged(nameof(AddShopViewVisibility)); }
-        }
-
         private EditShopViewModel _editShopViewModel;
         public EditShopViewModel EditShopViewModel
         {
@@ -61,25 +54,11 @@ namespace DecideMyLunch.ViewModels
             set { _editShopViewModel = value; OnPropertyChanged(nameof(EditShopViewModel)); }
         }
 
-        private Visibility _editShopViewVisibility;
-        public Visibility EditShopViewVisibility
-        {
-            get => _editShopViewVisibility;
-            set { _editShopViewVisibility = value; OnPropertyChanged(nameof(EditShopViewVisibility));}
-        }
-
         private DeleteShopViewModel _deleteShopViewModel;
         public DeleteShopViewModel DeleteShopViewModel
         {
             get => _deleteShopViewModel;
             set { _deleteShopViewModel = value; OnPropertyChanged(nameof(DeleteShopViewModel));}
-        }
-
-        private Visibility _deleteShopViewVisibility;
-        public Visibility DeleteShopViewVisibility
-        {
-            get => _deleteShopViewVisibility;
-            set { _deleteShopViewVisibility = value; OnPropertyChanged(nameof(DeleteShopViewVisibility)); }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -117,13 +96,13 @@ namespace DecideMyLunch.ViewModels
             _lunchAlgorithm = new LunchAlgorithm(data);
 
             AddShopViewModel = new AddShopViewModel(data);
-            AddShopViewVisibility = Visibility.Collapsed;
+            AddShopViewModel.Visibility = Visibility.Collapsed;
 
             EditShopViewModel = new EditShopViewModel(data);
-            EditShopViewVisibility = Visibility.Collapsed;
+            EditShopViewModel.Visibility = Visibility.Collapsed;
 
             DeleteShopViewModel = new DeleteShopViewModel(data);
-            DeleteShopViewVisibility = Visibility.Collapsed;
+            DeleteShopViewModel.Visibility = Visibility.Collapsed;
         }
 
         public void DecideLunch()
@@ -133,23 +112,23 @@ namespace DecideMyLunch.ViewModels
 
         public void ShowAddShop()
         {
-            AddShopViewVisibility = Visibility.Visible;
-            EditShopViewVisibility = Visibility.Collapsed;
-            DeleteShopViewVisibility = Visibility.Collapsed;
+            AddShopViewModel.Visibility = Visibility.Visible;
+            EditShopViewModel.Visibility = Visibility.Collapsed;
+            DeleteShopViewModel.Visibility = Visibility.Collapsed;
         }
 
         public void ShowEditShop()
         {
-            AddShopViewVisibility = Visibility.Collapsed;
-            EditShopViewVisibility = Visibility.Visible;
-            DeleteShopViewVisibility = Visibility.Collapsed;
+            AddShopViewModel.Visibility = Visibility.Collapsed;
+            EditShopViewModel.Visibility = Visibility.Visible;
+            DeleteShopViewModel.Visibility = Visibility.Collapsed;
         }
 
         public void ShowDeleteShop()
         {
-            AddShopViewVisibility = Visibility.Collapsed;
-            EditShopViewVisibility = Visibility.Collapsed;
-            DeleteShopViewVisibility = Visibility.Visible;
+            AddShopViewModel.Visibility = Visibility.Collapsed;
+            EditShopViewModel.Visibility = Visibility.Collapsed;
+            DeleteShopViewModel.Visibility = Visibility.Visible;
         }
     }
 }

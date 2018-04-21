@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using DecideMyLunch.Annotations;
 using DecideMyLunch.Interfaces;
@@ -14,6 +15,14 @@ namespace DecideMyLunch.ViewModels
 {
     public abstract class ShopViewModel : INotifyPropertyChanged
     {
+        private Visibility _visibility;
+
+        public Visibility Visibility
+        {
+            get { return _visibility; }
+            set { _visibility = value; OnPropertyChanged(nameof(Visibility)); }
+        }
+        
         private Restaurant _selectedShop;
         public Restaurant SelectedShop
         {

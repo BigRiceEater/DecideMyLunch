@@ -50,13 +50,13 @@
                 <TextBlock Text="{Binding Result}" Background="Azure" />
                 <views:AddShopView 
                     DataContext="{Binding AddShopViewModel}" 
-                    Visibility="{Binding AddShopViewVisibility}" />
+                    Visibility="{Binding Visibility}" />
                 <views:EditShopView 
                     DataContext="{Binding EditShopViewModel}" 
-                    Visibility="{Binding EditShopViewVisibility}"/>
+                    Visibility="{Binding Visibility}"/>
                 <views:DeleteShopView 
                     DataContext="{Binding DeleteShopViewModel}" 
-                    Visibility="{Binding DeleteShopViewVisibility}"/>
+                    Visibility="{Binding Visibility}"/>
             </StackPanel>
         </Grid>
     </DockPanel>
