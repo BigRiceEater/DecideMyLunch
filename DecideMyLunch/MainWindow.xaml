@@ -10,7 +10,7 @@
     <Window.DataContext>
         <viewmodel:MainViewModel/>
     </Window.DataContext>
-    
+
     <Window.Resources>
         <ResourceDictionary>
             <Style TargetType="Button">
@@ -25,50 +25,50 @@
             </Style>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <StackPanel x:Name="ControlsStack" Grid.Column="0" Margin="20">
-            <Button Command="{Binding DecideLunchCommand}">Decide for me</Button>
-            <GroupBox Header="Restaurants">
-                <StackPanel>
-                    <ComboBox Margin="10" ItemsSource="{Binding Restaurants}" SelectedItem="{Binding SelectedRestaurant}">
-                        <ComboBox.ItemTemplate>
-                    <DataTemplate>
-                        <Label Content="{Binding Name}"></Label>
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-                    </ComboBox>
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <Label Content="{Binding Status}"/>
+            </StatusBarItem>
+        </StatusBar>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel x:Name="ControlsStack" Grid.Column="0" Margin="20">
+                <Button Command="{Binding DecideLunchCommand}">Decide for me</Button>
+                <GroupBox Header="Restaurants">
                     <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Style="{StaticResource DataLabelStyle}">ID:</Label>
-                        <Label Style="{StaticResource DataLabelStyle}" Content="{Binding SelectedRestaurant.ID, Mode=TwoWay}"/>
+                        <ComboBox Margin="10" ItemsSource="{Binding Restaurants}" SelectedItem="{Binding SelectedRestaurant}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Name}"></Label>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Style="{StaticResource DataLabelStyle}">ID:</Label>
+                                <Label Style="{StaticResource DataLabelStyle}" Content="{Binding SelectedRestaurant.ID, Mode=TwoWay}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label  Style="{StaticResource DataLabelStyle}">Name:</Label>
+                                <TextBox Style="{StaticResource DataBoxStyle}" Text="{Binding SelectedRestaurant.Name, Mode=TwoWay}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label>Include in decision:</Label>
+                                <CheckBox VerticalAlignment="Center"></CheckBox>
+                            </StackPanel>
+                            <Button Command="{Binding AddShopCommand}" CommandParameter="{Binding SelectedRestaurant}">Add Shop</Button>
+                        </StackPanel>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label  Style="{StaticResource DataLabelStyle}">Name:</Label>
-                        <TextBox Style="{StaticResource DataBoxStyle}" Text="{Binding SelectedRestaurant.Name, Mode=TwoWay}"/>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label>Include in decision:</Label>
-                        <CheckBox VerticalAlignment="Center"></CheckBox>
-                    </StackPanel>
-                    <Button Command="{Binding AddShopCommand}" CommandParameter="{Binding SelectedRestaurant}"> Add Shop</Button>
-                </StackPanel>
-                </StackPanel>
-            </GroupBox>
-        </StackPanel>
-        
-        <StackPanel x:Name="OutputStack" Grid.Column="1" Margin="20">
+                </GroupBox>
+            </StackPanel>
+
+            <StackPanel x:Name="OutputStack" Grid.Column="1" Margin="20">
             <TextBlock Text="{Binding Result}" Background="Azure" />
-            <ListView ItemsSource="{Binding Status}" MinHeight="50" MaxHeight="200"  Margin="5">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Label Content="{Binding}"></Label>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
         </StackPanel>
-    </Grid>
+        </Grid>
+    </DockPanel>
 </Window>
