@@ -42,6 +42,7 @@
                         <Button Command="{Binding ShowAddShopCommand}">Add Shop</Button>
                         <Button Command="{Binding ShowEditShopCommand}">Update Shop</Button>
                         <Button Command="{Binding ShowDeleteShopCommand}">Delete Shop</Button>
+                        <Label Content="{Binding TotalNumShops}"></Label>
                     </StackPanel>
                 </GroupBox>
             </StackPanel>

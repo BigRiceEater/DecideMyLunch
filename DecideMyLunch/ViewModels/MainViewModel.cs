@@ -38,6 +38,15 @@ namespace DecideMyLunch.ViewModels
             set { _applicationStatus = value; OnPropertyChanged(nameof(ApplicationStatus)); }
         }
 
+        private string _totalNumShops;
+
+        public string TotalNumShops
+        {
+            get => $"Number of shops: {_totalNumShops}";
+            set { _totalNumShops = value; OnPropertyChanged(nameof(TotalNumShops));}
+        }
+           
+
         private AddShopViewModel _addShopViewModel;
         public AddShopViewModel AddShopViewModel
         {
@@ -83,7 +92,7 @@ namespace DecideMyLunch.ViewModels
             {
                 DidInsertRestaurant = new DidInsertRestaurant(item =>
                     {
-                        ApplicationStatus = String.Format("Successfully added {0}", item.Name);
+                        ApplicationStatus = $"Successfully added {item.Name}";
                     }
                 )};
 
@@ -102,7 +111,7 @@ namespace DecideMyLunch.ViewModels
                     {EShopView.Delete, DeleteShopViewModel}
                 });
 
-            
+            TotalNumShops = data.GetRestaurants().Count.ToString();
         }
 
         public void DecideLunch()
