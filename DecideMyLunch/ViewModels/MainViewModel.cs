@@ -88,13 +88,8 @@ namespace DecideMyLunch.ViewModels
             _lunchAlgorithm = new LunchAlgorithm(data);
 
             AddShopViewModel = new AddShopViewModel(data);
-            AddShopViewModel.Visibility = Visibility.Collapsed;
-
             EditShopViewModel = new EditShopViewModel(data);
-            EditShopViewModel.Visibility = Visibility.Collapsed;
-
             DeleteShopViewModel = new DeleteShopViewModel(data);
-            DeleteShopViewModel.Visibility = Visibility.Collapsed;
         }
 
         public void DecideLunch()

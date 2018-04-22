@@ -42,6 +42,7 @@ namespace DecideMyLunch.ViewModels
         {
             _data = dataStore;
             _selectedShop = new Restaurant();
+            Visibility = Visibility.Collapsed;
         }
     }
 }
