@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Input;
 using DecideMyLunch.Annotations;
 using DecideMyLunch.Commands;
+using DecideMyLunch.Delegates;
 using DecideMyLunch.Enums;
 using DecideMyLunch.Helpers;
 using DecideMyLunch.Interfaces;
