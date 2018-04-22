@@ -17,7 +17,8 @@ namespace DecideMyLunch.ViewModels
     {
         public AddShopCommand AddShopCommand { get; set; }
 
-        public AddShopViewModel(IDataStore dataStore) : base (dataStore)
+        public AddShopViewModel(IDataStore dataStore, UpdateAppStatusDelegate del) : 
+            base (dataStore, del)
         {
             AddShopCommand = new AddShopCommand(this);
         }

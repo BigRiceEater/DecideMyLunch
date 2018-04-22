@@ -18,5 +18,8 @@ namespace DecideMyLunch.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public delegate void UpdateAppStatusDelegate(string msg);
+        protected UpdateAppStatusDelegate UpdateAppStatus { get; set; }
     }
 }

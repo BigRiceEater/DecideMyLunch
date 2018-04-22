@@ -89,9 +89,10 @@ namespace DecideMyLunch.ViewModels
 
             _lunchAlgorithm = new LunchAlgorithm(data);
 
-            AddShopViewModel = new AddShopViewModel(data);
-            EditShopViewModel = new EditShopViewModel(data);
-            DeleteShopViewModel = new DeleteShopViewModel(data);
+            UpdateAppStatus = new UpdateAppStatusDelegate((msg) => { ApplicationStatus = msg; });
+            AddShopViewModel = new AddShopViewModel(data, UpdateAppStatus);
+            EditShopViewModel = new EditShopViewModel(data, UpdateAppStatus);
+            DeleteShopViewModel = new DeleteShopViewModel(data, UpdateAppStatus);
 
             _visibilityToggler = new ToggleShopViewVisibility(
                 new Dictionary<EShopView, ShopViewModel>()
@@ -100,6 +101,8 @@ namespace DecideMyLunch.ViewModels
                     {EShopView.Edit, EditShopViewModel},
                     {EShopView.Delete, DeleteShopViewModel}
                 });
+
+            
         }
 
         public void DecideLunch()
@@ -110,6 +113,7 @@ namespace DecideMyLunch.ViewModels
         public void ShowAddShop()
         {
             _visibilityToggler.SetVisibility(EShopView.Add);
+            UpdateAppStatus("Showing add shop section");
         }
 
         public void ShowEditShop()
@@ -121,5 +125,7 @@ namespace DecideMyLunch.ViewModels
         {
             _visibilityToggler.SetVisibility(EShopView.Delete);
         }
+
+
     }
 }

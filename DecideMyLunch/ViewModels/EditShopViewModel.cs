@@ -15,7 +15,8 @@ namespace DecideMyLunch.ViewModels
 
         public ICommand EditShopCommand { get; private set; }
 
-        public EditShopViewModel(IDataStore dataStore) : base (dataStore)
+        public EditShopViewModel(IDataStore dataStore, UpdateAppStatusDelegate del) : 
+            base (dataStore, del)
         {
             EditShopCommand = new EditShopCommand(this);
         }

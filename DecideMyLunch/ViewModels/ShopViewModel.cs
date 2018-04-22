@@ -39,9 +39,10 @@ namespace DecideMyLunch.ViewModels
         }
 
         protected IDataStore _data;
-        public ShopViewModel(IDataStore dataStore)
+        public ShopViewModel(IDataStore dataStore, UpdateAppStatusDelegate del)
         {
             CancelCommand = new CancelCommand(this);
+            UpdateAppStatus = del;
             _data = dataStore;
             SelectedShop = new Restaurant();
             Visibility = Visibility.Collapsed;
@@ -51,6 +52,7 @@ namespace DecideMyLunch.ViewModels
         {
             Visibility = Visibility.Collapsed;
             SelectedShop = new Restaurant();
+            UpdateAppStatus?.Invoke("Cancelled action");
         }
     }
 }

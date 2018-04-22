@@ -14,7 +14,8 @@ namespace DecideMyLunch.ViewModels
     {
         public ICommand DeleteShopCommand { get; set; }
 
-        public DeleteShopViewModel(IDataStore dataStore) : base (dataStore)
+        public DeleteShopViewModel(IDataStore dataStore, UpdateAppStatusDelegate del) : 
+            base (dataStore, del)
         {
             DeleteShopCommand = new DeleteShopCommand(this);
         }
