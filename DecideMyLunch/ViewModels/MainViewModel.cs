@@ -77,6 +77,7 @@ namespace DecideMyLunch.ViewModels
         public ICommand ShowEditShopCommand { get; set; }
         public ICommand ShowDeleteShopCommand { get; set; }
 
+        private readonly IDataStore _data;
         private LunchAlgorithm _lunchAlgorithm;
         private readonly ToggleShopViewVisibility _visibilityToggler;
         public MainViewModel() 
@@ -88,7 +89,7 @@ namespace DecideMyLunch.ViewModels
 
             Result = "Nothing yet";
 
-            IDataStore data = new SqlDataStore
+            _data = new SqlDataStore
             {
                 DidInsertShopDelegate = new DidInsertShopDelegate(item =>
                     {
@@ -96,12 +97,17 @@ namespace DecideMyLunch.ViewModels
                     }
                 )};
 
-            _lunchAlgorithm = new LunchAlgorithm(data);
+            _lunchAlgorithm = new LunchAlgorithm(_data);
 
-            UpdateAppStatus = new UpdateAppStatusDelegate((msg) => { ApplicationStatus = msg; });
-            AddShopViewModel = new AddShopViewModel(data, UpdateAppStatus);
-            EditShopViewModel = new EditShopViewModel(data, UpdateAppStatus);
-            DeleteShopViewModel = new DeleteShopViewModel(data, UpdateAppStatus);
+            UpdateAppStatus = new UpdateAppStatusDelegate((msg) =>
+            {
+                ApplicationStatus = msg;
+                UpdateStatistics();
+            });
+
+            AddShopViewModel = new AddShopViewModel(_data, UpdateAppStatus);
+            EditShopViewModel = new EditShopViewModel(_data, UpdateAppStatus);
+            DeleteShopViewModel = new DeleteShopViewModel(_data, UpdateAppStatus);
 
             _visibilityToggler = new ToggleShopViewVisibility(
                 new Dictionary<EShopView, ShopViewModel>()
@@ -110,10 +116,15 @@ namespace DecideMyLunch.ViewModels
                     {EShopView.Edit, EditShopViewModel},
                     {EShopView.Delete, DeleteShopViewModel}
                 });
-
-            //TODO: Move to UpdateAppStatusDelegate
-            TotalNumShops = data.GetShops().Count.ToString();
+         
+            UpdateStatistics();
             ApplicationStatus = "Ready";
+
+        }
+
+        private void UpdateStatistics()
+        {
+            TotalNumShops = _data?.GetShops().Count.ToString();
         }
 
         public void DecideLunch()
