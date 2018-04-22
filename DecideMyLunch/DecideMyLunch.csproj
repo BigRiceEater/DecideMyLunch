@@ -78,6 +78,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CancelCommand.cs" />
     <Compile Include="Commands\DeleteShopCommand.cs" />
     <Compile Include="Commands\EditShopCommand.cs" />
     <Compile Include="Commands\ShowDeleteShopCommand.cs" />

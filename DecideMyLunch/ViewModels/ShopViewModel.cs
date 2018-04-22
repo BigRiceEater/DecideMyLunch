@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using DecideMyLunch.Annotations;
+using DecideMyLunch.Commands;
 using DecideMyLunch.Interfaces;
 using DecideMyLunch.Models;
 
@@ -40,9 +41,16 @@ namespace DecideMyLunch.ViewModels
         protected IDataStore _data;
         public ShopViewModel(IDataStore dataStore)
         {
+            CancelCommand = new CancelCommand(this);
             _data = dataStore;
-            _selectedShop = new Restaurant();
+            SelectedShop = new Restaurant();
             Visibility = Visibility.Collapsed;
+        }
+
+        public void ViewCancelled()
+        {
+            Visibility = Visibility.Collapsed;
+            SelectedShop = new Restaurant();
         }
     }
 }
