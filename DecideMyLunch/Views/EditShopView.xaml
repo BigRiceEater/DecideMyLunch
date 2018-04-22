@@ -40,7 +40,7 @@
                 <ComboBox Margin="10" ItemsSource="{Binding Shops}" SelectedItem="{Binding SelectedShop}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <Label Content="{Binding Name}"></Label>
+                            <Label Width="auto" Content="{Binding Name}"></Label>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
@@ -50,7 +50,7 @@
                 </StackPanel>
                 <StackPanel>
                     <Label>Name:</Label>
-                    <TextBox Text="{Binding SelectedShop.Name}"/>
+                    <TextBox VerticalContentAlignment="Center" Text="{Binding SelectedShop.Name}"/>
                 </StackPanel>
                 <StackPanel>
                     <Label>Disable:</Label>
