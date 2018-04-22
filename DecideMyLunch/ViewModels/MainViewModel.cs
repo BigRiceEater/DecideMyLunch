@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Input;
 using DecideMyLunch.Annotations;
 using DecideMyLunch.Commands;
+using DecideMyLunch.Enums;
 using DecideMyLunch.Helpers;
 using DecideMyLunch.Interfaces;
 using DecideMyLunch.Models;
@@ -67,6 +68,7 @@ namespace DecideMyLunch.ViewModels
         public ICommand ShowDeleteShopCommand { get; set; }
 
         private LunchAlgorithm _lunchAlgorithm;
+        private readonly ToggleShopViewVisibility _visibilityToggler;
         public MainViewModel() 
         {
             DecideLunchCommand = new DecideLunchCommand(this);
@@ -90,6 +92,14 @@ namespace DecideMyLunch.ViewModels
             AddShopViewModel = new AddShopViewModel(data);
             EditShopViewModel = new EditShopViewModel(data);
             DeleteShopViewModel = new DeleteShopViewModel(data);
+
+            _visibilityToggler = new ToggleShopViewVisibility(
+                new Dictionary<EShopView, ShopViewModel>()
+                {
+                    {EShopView.Add, AddShopViewModel},
+                    {EShopView.Edit, EditShopViewModel},
+                    {EShopView.Delete, DeleteShopViewModel}
+                });
         }
 
         public void DecideLunch()
@@ -99,23 +109,17 @@ namespace DecideMyLunch.ViewModels
 
         public void ShowAddShop()
         {
-            AddShopViewModel.Visibility = Visibility.Visible;
-            EditShopViewModel.Visibility = Visibility.Collapsed;
-            DeleteShopViewModel.Visibility = Visibility.Collapsed;
+            _visibilityToggler.SetVisibility(EShopView.Add);
         }
 
         public void ShowEditShop()
         {
-            AddShopViewModel.Visibility = Visibility.Collapsed;
-            EditShopViewModel.Visibility = Visibility.Visible;
-            DeleteShopViewModel.Visibility = Visibility.Collapsed;
+            _visibilityToggler.SetVisibility(EShopView.Edit);
         }
 
         public void ShowDeleteShop()
         {
-            AddShopViewModel.Visibility = Visibility.Collapsed;
-            EditShopViewModel.Visibility = Visibility.Collapsed;
-            DeleteShopViewModel.Visibility = Visibility.Visible;
+            _visibilityToggler.SetVisibility(EShopView.Delete);
         }
     }
 }
