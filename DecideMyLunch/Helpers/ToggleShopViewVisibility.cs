@@ -26,5 +26,13 @@ namespace DecideMyLunch.Helpers
                     Visibility.Visible : Visibility.Collapsed;
             }
         }
+
+        public void HideAllViews()
+        {
+            foreach (var item in _viewModelsByView)
+            {
+                item.Value.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }
