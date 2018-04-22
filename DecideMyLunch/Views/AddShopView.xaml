@@ -29,7 +29,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <GroupBox Header="Add Restaurant">
+        <GroupBox Header="Add Shop">
             <StackPanel Orientation="Vertical">
                 <StackPanel>
                     <Label>Name:</Label>

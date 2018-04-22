@@ -36,7 +36,7 @@
     <Grid>
         <GroupBox Header="Delete Shop">
             <StackPanel Orientation="Vertical">
-                <ComboBox Margin="10" ItemsSource="{Binding Restaurants}" SelectedItem="{Binding SelectedRestaurant}">
+                <ComboBox Margin="10" ItemsSource="{Binding Shops}" SelectedItem="{Binding SelectedShop}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <Label Content="{Binding Name}"></Label>

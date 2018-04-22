@@ -104,7 +104,7 @@
     <Compile Include="Helpers\SqlDataStore.cs" />
     <Compile Include="Interfaces\IDataStore.cs" />
     <Compile Include="LunchAlgorithm.cs" />
-    <Compile Include="Models\Restaurant.cs" />
+    <Compile Include="Models\Shop.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\AddShopViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

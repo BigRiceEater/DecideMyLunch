@@ -10,11 +10,11 @@ namespace DecideMyLunch.Interfaces
 {
     public interface IDataStore
     {
-        void InsertRestaurant(Restaurant item);
-        void DeleteRestaurant(Restaurant item);
-        void UpdateRestaurant(Restaurant item);
+        void InsertShop(Shop item);
+        void DeleteShop(Shop item);
+        void UpdateShop(Shop item);
 
-        List<Restaurant> GetRestaurants();
-        DidInsertRestaurant DidInsertRestaurant { get; set; }
+        List<Shop> GetShops();
+        DidInsertShopDelegate DidInsertShopDelegate { get; set; }
     }
 }

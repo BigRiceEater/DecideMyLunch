@@ -21,9 +21,9 @@ namespace DecideMyLunch.ViewModels
             EditShopCommand = new EditShopCommand(this);
         }
 
-        public void UpdateShop(Restaurant shop)
+        public void UpdateShop(Shop shop)
         {
-            _data.UpdateRestaurant(shop);
+            _data.UpdateShop(shop);
             UpdateAppStatus($"Updated shop {shop.Name}");
         }
     }

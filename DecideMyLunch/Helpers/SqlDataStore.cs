@@ -13,19 +13,19 @@ namespace DecideMyLunch.Helpers
     // TODO: use GUID instead of relying on numbers?
     public class SqlDataStore : IDataStore
     {
-        public void InsertRestaurant(Restaurant item)
+        public void InsertShop(Shop item)
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
                 try
                 {   
                     //TODO: Check if shopname already exists
-                    conn.CreateTable<Restaurant>();
+                    conn.CreateTable<Shop>();
                     item.ID = this.GenerateGuid();
                     var rows = conn.Insert(item);
                     if (rows > 0)
                     {
-                        DidInsertRestaurant?.Invoke(item);
+                        DidInsertShopDelegate?.Invoke(item);
                     }
                 }
                 catch (Exception e)
@@ -35,13 +35,13 @@ namespace DecideMyLunch.Helpers
             }
         }
 
-        public void DeleteRestaurant(Restaurant item)
+        public void DeleteShop(Shop item)
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
                 try
                 {
-                    conn.CreateTable<Restaurant>();
+                    conn.CreateTable<Shop>();
                     conn.Delete(item);
                 }
                 catch (Exception e)
@@ -51,13 +51,13 @@ namespace DecideMyLunch.Helpers
             }
         }
 
-        public void UpdateRestaurant(Restaurant item)
+        public void UpdateShop(Shop item)
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
                 try
                 {
-                    conn.CreateTable<Restaurant>();
+                    conn.CreateTable<Shop>();
                     conn.Update(item);
                 }
                 catch (Exception e)
@@ -67,16 +67,16 @@ namespace DecideMyLunch.Helpers
             }
         }
 
-        public List<Restaurant> GetRestaurants()
+        public List<Shop> GetShops()
         {
             //TODO: Order by A-Z
-            var items = new List<Restaurant>();
+            var items = new List<Shop>();
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
                 try
                 {
-                    conn.CreateTable<Restaurant>();
-                    items = conn.Table<Restaurant>().ToList();
+                    conn.CreateTable<Shop>();
+                    items = conn.Table<Shop>().ToList();
                 }
                 catch (Exception e)
                 {
@@ -86,7 +86,7 @@ namespace DecideMyLunch.Helpers
             return items;
         }
 
-        public DidInsertRestaurant DidInsertRestaurant { get; set; }
+        public DidInsertShopDelegate DidInsertShopDelegate { get; set; }
 
         private string GenerateGuid()
         {
@@ -99,7 +99,7 @@ namespace DecideMyLunch.Helpers
                     bool isGuidInvalid = true;
                     do {
                         id = Guid.NewGuid().ToString();
-                        var matchedList = conn.Table<Restaurant>().Where(i => i.ID == id).ToList();
+                        var matchedList = conn.Table<Shop>().Where(i => i.ID == id).ToList();
                         isGuidInvalid = matchedList.FirstOrDefault() != null;
                     } while (isGuidInvalid);
                 }

@@ -19,14 +19,14 @@ namespace DecideMyLunch.Commands
 
         public bool CanExecute (object parameter)
         {
-            var item = parameter as Restaurant;
+            var item = parameter as Shop;
             //TODO: If any of the fields are empty then return false;
             return true;
         }
 
         public void Execute(object parameter)
         {
-            var shop = parameter as Restaurant;
+            var shop = parameter as Shop;
             _viewmodel.AddShop(shop);
         }
 

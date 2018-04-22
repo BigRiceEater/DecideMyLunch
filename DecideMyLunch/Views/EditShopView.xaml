@@ -35,9 +35,9 @@
     </UserControl.Resources>
 
     <Grid>
-        <GroupBox Header="Edit Restaurants">
+        <GroupBox Header="Edit Shops">
             <StackPanel Orientation="Vertical">
-                <ComboBox Margin="10" ItemsSource="{Binding Restaurants}" SelectedItem="{Binding SelectedRestaurant}">
+                <ComboBox Margin="10" ItemsSource="{Binding Shops}" SelectedItem="{Binding SelectedShop}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <Label Content="{Binding Name}"></Label>
@@ -46,18 +46,18 @@
                 </ComboBox>
                 <StackPanel>
                     <Label>ID:</Label>
-                    <Label Content="{Binding SelectedRestaurant.ID}" />
+                    <Label Content="{Binding SelectedShop.ID}" />
                 </StackPanel>
                 <StackPanel>
                     <Label>Name:</Label>
-                    <TextBox Text="{Binding SelectedRestaurant.Name}"/>
+                    <TextBox Text="{Binding SelectedShop.Name}"/>
                 </StackPanel>
                 <StackPanel>
                     <Label>Disable:</Label>
                     <CheckBox/>
                 </StackPanel>
                 <StackPanel>
-                    <Button Command="{Binding UpdateShopCommand}" CommandParameter="{Binding SelectedRestaurant}">Update</Button>
+                    <Button Command="{Binding UpdateShopCommand}" CommandParameter="{Binding SelectedShop}">Update</Button>
                     <Button Command="{Binding CancelCommand}">Cancel</Button>
                 </StackPanel>
             </StackPanel>

@@ -24,8 +24,8 @@ namespace DecideMyLunch.ViewModels
             set { _visibility = value; OnPropertyChanged(nameof(Visibility)); }
         }
         
-        private Restaurant _selectedShop;
-        public Restaurant SelectedShop
+        private Shop _selectedShop;
+        public Shop SelectedShop
         {
             get => _selectedShop;
             set { _selectedShop = value; OnPropertyChanged(nameof(SelectedShop)); }
@@ -44,14 +44,14 @@ namespace DecideMyLunch.ViewModels
             CancelCommand = new CancelCommand(this);
             UpdateAppStatus = del;
             _data = dataStore;
-            SelectedShop = new Restaurant();
+            SelectedShop = new Shop();
             Visibility = Visibility.Collapsed;
         }
 
         public void ViewCancelled()
         {
             Visibility = Visibility.Collapsed;
-            SelectedShop = new Restaurant();
+            SelectedShop = new Shop();
             UpdateAppStatus?.Invoke("Cancelled action");
         }
     }

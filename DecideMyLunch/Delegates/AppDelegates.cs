@@ -7,5 +7,5 @@ using DecideMyLunch.Models;
 
 namespace DecideMyLunch.Delegates
 {
-    public delegate void DidInsertRestaurant(Restaurant shop);
+    public delegate void DidInsertShopDelegate(Shop shop);
 }

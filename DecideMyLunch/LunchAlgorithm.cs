@@ -17,12 +17,12 @@ namespace DecideMyLunch
         {
             _dataService = dataService;
         }
-        public Restaurant GetRestaurant()
+        public Shop GetShop()
         {
-            var restaurants = _dataService.GetRestaurants();
-            var index = _generator.Next(maxValue:restaurants.Count);
-            return restaurants[index];
-            //TODO: Check if restaurant is actually disabled before returning result.
+            var shops = _dataService.GetShops();
+            var index = _generator.Next(maxValue:shops.Count);
+            return shops[index];
+            //TODO: Check if shop is actually disabled before returning result.
         }
     }
 }

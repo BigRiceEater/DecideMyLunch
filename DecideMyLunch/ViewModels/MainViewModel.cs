@@ -90,7 +90,7 @@ namespace DecideMyLunch.ViewModels
 
             IDataStore data = new SqlDataStore
             {
-                DidInsertRestaurant = new DidInsertRestaurant(item =>
+                DidInsertShopDelegate = new DidInsertShopDelegate(item =>
                     {
                         ApplicationStatus = $"Successfully added {item.Name}";
                     }
@@ -111,7 +111,8 @@ namespace DecideMyLunch.ViewModels
                     {EShopView.Delete, DeleteShopViewModel}
                 });
 
-            TotalNumShops = data.GetRestaurants().Count.ToString();
+            //TODO: Move to UpdateAppStatusDelegate
+            TotalNumShops = data.GetShops().Count.ToString();
             ApplicationStatus = "Ready";
         }
 

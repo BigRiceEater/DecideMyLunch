@@ -23,9 +23,9 @@ namespace DecideMyLunch.ViewModels
             AddShopCommand = new AddShopCommand(this);
         }
 
-        public void AddShop(Restaurant item)
+        public void AddShop(Shop item)
         {
-            _data.InsertRestaurant(item);
+            _data.InsertShop(item);
             UpdateAppStatus($"Added shop {item.Name}");
         }
     }

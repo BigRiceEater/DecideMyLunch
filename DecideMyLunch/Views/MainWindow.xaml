@@ -37,7 +37,7 @@
                 <GroupBox Header="Lunch time!">
                     <Button Command="{Binding DecideLunchCommand}">Decide for me</Button>
                 </GroupBox>
-                <GroupBox Header="Manage Restaurants">
+                <GroupBox Header="Manage Shops">
                     <StackPanel>
                         <Button Command="{Binding ShowAddShopCommand}">Add Shop</Button>
                         <Button Command="{Binding ShowEditShopCommand}">Update Shop</Button>

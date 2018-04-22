@@ -7,7 +7,7 @@ using SQLite;
 
 namespace DecideMyLunch.Models
 {
-    public class Restaurant
+    public class Shop
     {
         [PrimaryKey]
         public string ID { get; set; }

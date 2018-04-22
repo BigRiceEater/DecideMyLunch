@@ -24,7 +24,7 @@ namespace DecideMyLunch.Commands
 
         public void Execute(object parameter)
         {
-            var shop = parameter as Restaurant;
+            var shop = parameter as Shop;
             _vm.UpdateShop(shop);
         }
 
