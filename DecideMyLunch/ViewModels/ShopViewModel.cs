@@ -29,8 +29,15 @@ namespace DecideMyLunch.ViewModels
         public Shop SelectedShop
         {
             get => _selectedShop;
-            set { _selectedShop = value; OnPropertyChanged(nameof(SelectedShop)); }
+            set
+            {
+                _unmodifiedShop = _selectedShop;
+                _selectedShop = value;
+                OnPropertyChanged(nameof(SelectedShop));
+            }
         }
+
+        private Shop _unmodifiedShop;
 
         private static ObservableCollection<Shop> _shops;
         public ObservableCollection<Shop> Shops
@@ -85,14 +92,10 @@ namespace DecideMyLunch.ViewModels
             Shops.Remove(shop);
         }
 
-        protected void UpdateShopList()
+        protected void UpdateShopList(Shop shop)
         {
-            //TODO: Does not scale well. Just update the single shop, how to store old value.
-            Shops.Clear();
-            foreach (var item in _data.GetShops())
-            {
-                Shops.Add(item);
-            }
+            var index = Shops.IndexOf(_unmodifiedShop);
+            Shops[index] = shop;
         }
     }
 }
