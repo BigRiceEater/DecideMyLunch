@@ -11,5 +11,10 @@ namespace DecideMyLunch.Views
         {
             InitializeComponent();
         }
+
+        private void DeleteShopView_Loaded()
+        {
+
+        }
     }
 }

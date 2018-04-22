@@ -86,7 +86,6 @@ namespace DecideMyLunch.ViewModels
             ShowDeleteShopCommand = new ShowDeleteShopCommand(this);
 
             Result = "Nothing yet";
-            ApplicationStatus = "Ready";
 
             IDataStore data = new SqlDataStore
             {
@@ -112,11 +111,13 @@ namespace DecideMyLunch.ViewModels
                 });
 
             TotalNumShops = data.GetRestaurants().Count.ToString();
+            ApplicationStatus = "Ready";
         }
 
         public void DecideLunch()
         {
             Result = "Yes!";
+            UpdateAppStatus("Lunch decided!");
         }
 
         public void ShowAddShop()
@@ -128,11 +129,13 @@ namespace DecideMyLunch.ViewModels
         public void ShowEditShop()
         {
             _visibilityToggler.SetVisibility(EShopView.Edit);
+            UpdateAppStatus("Showing edit shop section");
         }
 
         public void ShowDeleteShop()
         {
             _visibilityToggler.SetVisibility(EShopView.Delete);
+            UpdateAppStatus("Showing delete shop section");
         }
     }
 }

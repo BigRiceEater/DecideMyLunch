@@ -24,6 +24,7 @@ namespace DecideMyLunch.ViewModels
         public void UpdateShop(Restaurant shop)
         {
             _data.UpdateRestaurant(shop);
+            UpdateAppStatus($"Updated shop {shop.Name}");
         }
     }
 }
