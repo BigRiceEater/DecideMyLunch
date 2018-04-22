@@ -134,7 +134,5 @@ namespace DecideMyLunch.ViewModels
         {
             _visibilityToggler.SetVisibility(EShopView.Delete);
         }
-
-
     }
 }

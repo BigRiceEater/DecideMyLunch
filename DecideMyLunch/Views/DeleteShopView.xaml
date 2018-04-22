@@ -46,6 +46,7 @@
                 <StackPanel>
                     <Button Command="{Binding DeleteShopCommand}"
                             CommandParameter="{Binding SelectedShop}">Delete</Button>
+                    <Button>Delete All</Button> <!-- Show MessageBox -->
                     <Button Command="{Binding CancelCommand}">Cancel</Button>
                 </StackPanel>
             </StackPanel>
