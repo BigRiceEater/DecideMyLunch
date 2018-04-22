@@ -23,6 +23,8 @@ namespace DecideMyLunch.ViewModels
         public void DeleteShop(Shop shop)
         {
             _data.DeleteShop(shop);
+            SelectedShop = null;
+            RemoveShopFromList(shop);
             UpdateAppStatus($"Deleted shop {shop.Name}");
         }
     }

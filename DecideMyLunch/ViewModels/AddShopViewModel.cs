@@ -27,6 +27,7 @@ namespace DecideMyLunch.ViewModels
         {
             _data.InsertShop(item);
             SelectedShop = new Shop();
+            AddShopToList(item);
             UpdateAppStatus($"Added shop {item.Name}");
         }
     }

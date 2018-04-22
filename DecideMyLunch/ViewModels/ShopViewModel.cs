@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -31,6 +32,19 @@ namespace DecideMyLunch.ViewModels
             set { _selectedShop = value; OnPropertyChanged(nameof(SelectedShop)); }
         }
 
+        private static ObservableCollection<Shop> _shops;
+        public ObservableCollection<Shop> Shops
+        {
+            get => _shops;
+            set
+            {
+                if (_shops == null)
+                {
+                    _shops = value;
+                }
+            }
+        }
+
         private ICommand _cancelCommand;
         public ICommand CancelCommand
         {
@@ -46,6 +60,12 @@ namespace DecideMyLunch.ViewModels
             _data = dataStore;
             SelectedShop = new Shop();
             Visibility = Visibility.Collapsed;
+            InitShops();
+        }
+
+        private void InitShops()
+        {
+            Shops = new ObservableCollection<Shop>(_data.GetShops());
         }
 
         public void ViewCancelled()
@@ -53,6 +73,25 @@ namespace DecideMyLunch.ViewModels
             Visibility = Visibility.Collapsed;
             SelectedShop = new Shop();
             UpdateAppStatus?.Invoke("Cancelled action");
+        }
+
+        protected void AddShopToList(Shop shop)
+        {
+            Shops.Add(shop);
+        }
+
+        protected void RemoveShopFromList(Shop shop)
+        {
+            Shops.Remove(shop);
+        }
+
+        protected void UpdateShopList()
+        {
+            Shops.Clear();
+            foreach (var item in _data.GetShops())
+            {
+                Shops.Add(item);
+            }
         }
     }
 }

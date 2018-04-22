@@ -12,7 +12,6 @@ namespace DecideMyLunch.ViewModels
 {
     public class EditShopViewModel : ShopViewModel
     {
-
         public ICommand EditShopCommand { get; private set; }
 
         public EditShopViewModel(IDataStore dataStore, UpdateAppStatusDelegate del) : 
@@ -24,6 +23,7 @@ namespace DecideMyLunch.ViewModels
         public void UpdateShop(Shop shop)
         {
             _data.UpdateShop(shop);
+            UpdateShopList();
             UpdateAppStatus($"Updated shop {shop.Name}");
         }
     }

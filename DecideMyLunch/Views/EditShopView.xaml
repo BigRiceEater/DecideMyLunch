@@ -57,7 +57,8 @@
                     <CheckBox/>
                 </StackPanel>
                 <StackPanel>
-                    <Button Command="{Binding UpdateShopCommand}" CommandParameter="{Binding SelectedShop}">Update</Button>
+                    <Button Command="{Binding UpdateShopCommand}" 
+                            CommandParameter="{Binding SelectedShop}">Update</Button>
                     <Button Command="{Binding CancelCommand}">Cancel</Button>
                 </StackPanel>
             </StackPanel>
