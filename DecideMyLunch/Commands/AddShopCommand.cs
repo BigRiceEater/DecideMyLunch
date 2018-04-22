@@ -19,17 +19,23 @@ namespace DecideMyLunch.Commands
 
         public bool CanExecute (object parameter)
         {
-            var item = parameter as Shop;
-            //TODO: If any of the fields are empty then return false;
-            return true;
+            var item = parameter as string;
+            if (item == null) return false;
+
+            return !String.IsNullOrWhiteSpace(item);
         }
 
         public void Execute(object parameter)
         {
-            var shop = parameter as Shop;
+            var shopName = parameter as string;
+            var shop = new Shop() {Name = shopName};
             _viewmodel.AddShop(shop);
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
     }
 }

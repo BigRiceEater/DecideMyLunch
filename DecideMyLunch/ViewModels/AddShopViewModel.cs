@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using DecideMyLunch.Annotations;
 using DecideMyLunch.Commands;
 using DecideMyLunch.Helpers;
@@ -16,6 +17,14 @@ namespace DecideMyLunch.ViewModels
     public class AddShopViewModel : ShopViewModel
     {
         public AddShopCommand AddShopCommand { get; set; }
+
+        private string _newShopName;
+
+        public string NewShopName
+        {
+            get { return _newShopName; }
+            set { _newShopName = value; OnPropertyChanged(nameof(NewShopName)); }
+        }
 
         public AddShopViewModel(IDataStore dataStore, UpdateAppStatusDelegate del) : 
             base (dataStore, del)
