@@ -5,8 +5,50 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DecideMyLunch.Views"
              mc:Ignorable="d" 
+             Background="White"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="Width" Value="70"/>
+            </Style>
+
+            <Style TargetType="StackPanel">
+                <Setter Property="Orientation" Value="Horizontal"/>
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Width" Value="50"></Setter>
+            </Style>
+
+            <Style TargetType="TextBox">
+                <Setter Property="Width" Value="100"/>
+                <Setter Property="Margin" Value="5"></Setter>
+            </Style>
+
+            <Style TargetType="CheckBox">
+                <Setter Property="Margin" Value="5,10"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
-            
+        <GroupBox Header="Delete Shop">
+            <StackPanel Orientation="Vertical">
+                <ComboBox Margin="10" ItemsSource="{Binding Restaurants}" SelectedItem="{Binding SelectedRestaurant}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Name}"></Label>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <StackPanel>
+                    <Button Command="{Binding DeleteShopCommand}"
+                            CommandParameter="{Binding SelectedShop}">Delete</Button>
+                    <Button Command="{Binding CancelCommand}">Cancel</Button>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox> 
     </Grid>
 </UserControl>
