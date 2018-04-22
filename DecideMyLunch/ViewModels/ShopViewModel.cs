@@ -87,6 +87,7 @@ namespace DecideMyLunch.ViewModels
 
         protected void UpdateShopList()
         {
+            //TODO: Does not scale well. Just update the single shop, how to store old value.
             Shops.Clear();
             foreach (var item in _data.GetShops())
             {
