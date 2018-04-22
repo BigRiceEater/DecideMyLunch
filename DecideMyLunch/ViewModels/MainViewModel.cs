@@ -136,6 +136,7 @@ namespace DecideMyLunch.ViewModels
         public void ShowAddShop()
         {
             _visibilityToggler.SetVisibility(EShopView.Add);
+            _addShopViewModel.SelectedShop = new Shop();
             UpdateAppStatus("Showing add shop section");
         }
 

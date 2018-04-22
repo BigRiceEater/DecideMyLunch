@@ -75,7 +75,7 @@ namespace DecideMyLunch.ViewModels
         public void ViewCancelled()
         {
             Visibility = Visibility.Collapsed;
-            SelectedShop = new Shop();
+            SelectedShop = null;
             UpdateAppStatus?.Invoke("Cancelled action");
         }
 
