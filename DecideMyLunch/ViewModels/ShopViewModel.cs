@@ -31,13 +31,10 @@ namespace DecideMyLunch.ViewModels
             get => _selectedShop;
             set
             {
-                _unmodifiedShop = _selectedShop;
                 _selectedShop = value;
                 OnPropertyChanged(nameof(SelectedShop));
             }
         }
-
-        private Shop _unmodifiedShop;
 
         private static ObservableCollection<Shop> _shops;
         public ObservableCollection<Shop> Shops
@@ -90,12 +87,6 @@ namespace DecideMyLunch.ViewModels
         protected void RemoveShopFromList(Shop shop)
         {
             Shops.Remove(shop);
-        }
-
-        protected void UpdateShopList(Shop shop)
-        {
-            var index = Shops.IndexOf(_unmodifiedShop);
-            Shops[index] = shop;
         }
     }
 }
