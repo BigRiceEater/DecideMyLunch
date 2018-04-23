@@ -20,7 +20,12 @@ namespace DecideMyLunch.Commands
 
         public bool CanExecute(object parameter)
         {
-            return true;
+            var shop = parameter as Shop;
+            if (shop != null)
+            {
+                return !String.IsNullOrWhiteSpace(shop.Name);
+            }
+            else return false;
         }
 
         public void Execute(object parameter)
@@ -29,6 +34,10 @@ namespace DecideMyLunch.Commands
             _vm?.DeleteShop(shop);
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
     }
 }

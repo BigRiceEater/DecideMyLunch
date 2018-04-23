@@ -45,7 +45,7 @@
                 </ComboBox>
                 <StackPanel>
                     <Button Command="{Binding DeleteShopCommand}"
-                            CommandParameter="{Binding SelectedShop}">Delete</Button>
+                            CommandParameter="{Binding SelectedShop, UpdateSourceTrigger=PropertyChanged}">Delete</Button>
                     <Button>Delete All</Button> <!-- Show MessageBox -->
                     <Button Command="{Binding CancelCommand}">Cancel</Button>
                 </StackPanel>
