@@ -33,13 +33,13 @@
             <StackPanel Orientation="Vertical">
                 <StackPanel>
                     <Label>Name:</Label>
-                    <TextBox Text="{Binding NewShopName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
+                    <TextBox Text="{Binding SelectedShop.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
                     <Button 
                         Command="{Binding AddShopCommand}" 
-                        CommandParameter="{Binding NewShopName, Mode=TwoWay}">Confirm</Button>
+                        CommandParameter="{Binding SelectedShop}">Confirm</Button>
                     <Button Command="{Binding CancelCommand}">Cancel</Button>
                 </StackPanel>
             </StackPanel>
