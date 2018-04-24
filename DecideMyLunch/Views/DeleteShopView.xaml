@@ -20,9 +20,13 @@
                 <StackPanel Orientation="Horizontal">
                     <Button Command="{Binding DeleteShopCommand}"
                             CommandParameter="{Binding SelectedShop, UpdateSourceTrigger=PropertyChanged}">Delete</Button>
-                    <Button>Delete All</Button> <!-- Show MessageBox -->
                     <Button Command="{Binding CancelCommand}">Cancel</Button>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="70">Delete All</Button>
+                    <!-- Show MessageBox -->
+                </StackPanel>
+
             </StackPanel>
         </GroupBox> 
     </Grid>
