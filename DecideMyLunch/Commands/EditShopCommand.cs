@@ -19,7 +19,8 @@ namespace DecideMyLunch.Commands
         }
         public bool CanExecute(object parameter)
         {
-            return true;
+            var shop = parameter as Shop;
+            return shop != null;
         }
 
         public void Execute(object parameter)
@@ -28,6 +29,10 @@ namespace DecideMyLunch.Commands
             _vm.UpdateShop(shop);
         }
 
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler CanExecuteChanged
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
     }
 }
