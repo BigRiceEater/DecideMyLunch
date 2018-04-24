@@ -7,7 +7,9 @@
         xmlns:viewmodel="clr-namespace:DecideMyLunch.ViewModels"
         xmlns:views="clr-namespace:DecideMyLunch.Views"
         mc:Ignorable="d"
-        Title="Decide Lunch!" Height="350" Width="525">
+        Title="Decide Lunch!" 
+        Height="375" Width="525"
+        MinHeight="375" MinWidth="525">
     <Window.DataContext>
         <viewmodel:MainViewModel/>
     </Window.DataContext>
