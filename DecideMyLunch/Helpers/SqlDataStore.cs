@@ -10,7 +10,6 @@ using DecideMyLunch.Models;
 using SQLite;
 namespace DecideMyLunch.Helpers
 {
-    // TODO: use GUID instead of relying on numbers?
     public class SqlDataStore : IDataStore
     {
         public void InsertShop(Shop item)

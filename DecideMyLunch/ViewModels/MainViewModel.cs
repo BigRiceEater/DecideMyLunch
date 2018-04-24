@@ -18,9 +18,8 @@ using DecideMyLunch.Models;
 
 namespace DecideMyLunch.ViewModels
 {
-    //TODO: Add update button
-    //TODO: Add delete button
-    //TODO: Make disable button actually work
+    //TODO: Add button 'Show disabled shops'
+    //TODO: Add label 'Num of disabled shops'
 
     public class MainViewModel : BaseViewModel
     {

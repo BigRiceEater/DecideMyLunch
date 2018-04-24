@@ -12,6 +12,7 @@ namespace DecideMyLunch.ViewModels
 {
     public class DeleteShopViewModel : ShopViewModel
     {
+        //TODO: Add DeleteAllShops Command
         public ICommand DeleteShopCommand { get; set; }
 
         public DeleteShopViewModel(IDataStore dataStore, UpdateAppStatusDelegate del) : 
