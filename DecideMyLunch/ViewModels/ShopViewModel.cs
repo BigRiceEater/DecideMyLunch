@@ -88,5 +88,11 @@ namespace DecideMyLunch.ViewModels
         {
             Shops.Remove(shop);
         }
+
+        public virtual void ShowView()
+        {
+            Visibility = Visibility.Visible;
+            SelectedShop = null;
+        }
     }
 }

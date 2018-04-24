@@ -22,16 +22,15 @@ namespace DecideMyLunch.Helpers
         {
             foreach (var item in _viewModelsByView)
             {
-                item.Value.Visibility = item.Key.Equals(view) ? 
-                    Visibility.Visible : Visibility.Collapsed;
-            }
-        }
-
-        public void HideAllViews()
-        {
-            foreach (var item in _viewModelsByView)
-            {
-                item.Value.Visibility = Visibility.Collapsed;
+                var vm = item.Value;
+                if (item.Key.Equals(view))
+                {
+                    vm.ShowView();
+                }
+                else
+                {
+                    vm.ViewCancelled();
+                }
             }
         }
     }

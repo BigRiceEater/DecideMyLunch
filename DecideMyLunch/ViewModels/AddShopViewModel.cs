@@ -39,5 +39,11 @@ namespace DecideMyLunch.ViewModels
             AddShopToList(item);
             UpdateAppStatus($"Added shop {item.Name}");
         }
+
+        public override void ShowView()
+        {
+            base.ShowView();
+            SelectedShop = new Shop();
+        }
     }
 }
