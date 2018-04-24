@@ -21,11 +21,7 @@ namespace DecideMyLunch.Commands
         public bool CanExecute(object parameter)
         {
             var shop = parameter as Shop;
-            if (shop != null)
-            {
-                return !String.IsNullOrWhiteSpace(shop.Name);
-            }
-            else return false;
+            return shop != null;
         }
 
         public void Execute(object parameter)
