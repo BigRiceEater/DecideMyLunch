@@ -27,8 +27,7 @@ namespace DecideMyLunch.Commands
 
         public void Execute(object parameter)
         {
-            var shopName = parameter as string;
-            var shop = new Shop() {Name = shopName};
+            var shop = parameter as Shop;
             _viewmodel.AddShop(shop);
         }
 
