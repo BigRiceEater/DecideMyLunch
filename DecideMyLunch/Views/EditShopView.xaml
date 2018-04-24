@@ -7,32 +7,6 @@
              mc:Ignorable="d"
              Background="White"
              d:DesignHeight="230" d:DesignWidth="300">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="5" />
-                <Setter Property="Width" Value="70"/>
-            </Style>
-
-            <Style TargetType="StackPanel">
-                <Setter Property="Orientation" Value="Horizontal"/>
-            </Style>
-
-            <Style TargetType="Label">
-                <Setter Property="Margin" Value="5"/>
-                <Setter Property="Width" Value="50"></Setter>
-            </Style>
-
-            <Style TargetType="TextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Margin" Value="5"></Setter>
-            </Style>
-            
-            <Style TargetType="CheckBox">
-                <Setter Property="Margin" Value="5,10"></Setter>
-            </Style>
-        </ResourceDictionary>
-    </UserControl.Resources>
 
     <Grid>
         <GroupBox Header="Edit Shops">
@@ -40,23 +14,23 @@
                 <ComboBox Margin="10" ItemsSource="{Binding Shops}" SelectedItem="{Binding SelectedShop}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
-                            <Label Width="auto" Content="{Binding Name}"></Label>
+                            <Label Content="{Binding Name}"></Label>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <StackPanel>
+                <StackPanel Orientation="Horizontal">
                     <Label>ID:</Label>
                     <Label Content="{Binding SelectedShop.ID}" />
                 </StackPanel>
-                <StackPanel>
+                <StackPanel Orientation="Horizontal">
                     <Label>Name:</Label>
                     <TextBox VerticalContentAlignment="Center" Text="{Binding SelectedShop.Name}"/>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel Orientation="Horizontal">
                     <Label>Disable:</Label>
                     <CheckBox/>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel Orientation="Horizontal">
                     <Button Command="{Binding EditShopCommand}" 
                             CommandParameter="{Binding SelectedShop}">Update</Button>
                     <Button Command="{Binding CancelCommand}">Cancel</Button>

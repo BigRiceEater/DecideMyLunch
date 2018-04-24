@@ -7,31 +7,10 @@
              mc:Ignorable="d"
              Background="White"
              d:DesignHeight="100" d:DesignWidth="300">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="5" />
-                <Setter Property="Width" Value="70"/>
-            </Style>
-            
-            <Style TargetType="StackPanel">
-                <Setter Property="Orientation" Value="Horizontal"/>
-            </Style>
-
-            <Style TargetType="Label">
-                <Setter Property="Margin" Value="5"/>
-            </Style>
-            
-            <Style TargetType="TextBox">
-                <Setter Property="Width" Value="100"/>
-                <Setter Property="Margin" Value="5"></Setter>
-            </Style>
-        </ResourceDictionary>
-    </UserControl.Resources>
     <Grid>
         <GroupBox Header="Add Shop">
             <StackPanel Orientation="Vertical">
-                <StackPanel>
+                <StackPanel Orientation="Horizontal">
                     <Label>Name:</Label>
                     <TextBox Text="{Binding SelectedShop.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ></TextBox>
                 </StackPanel>

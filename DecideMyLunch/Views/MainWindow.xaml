@@ -12,16 +12,6 @@
         <viewmodel:MainViewModel/>
     </Window.DataContext>
 
-    <Window.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Button">
-                <Setter Property="Margin" Value="10,5"></Setter>
-            </Style>
-            <Style TargetType="GroupBox">
-                <Setter Property="Margin" Value="0,10"></Setter>
-            </Style>
-        </ResourceDictionary>
-    </Window.Resources>
     <DockPanel>
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem>
@@ -33,12 +23,12 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <StackPanel x:Name="ControlsStack" Grid.Column="0" Margin="20">
+            <StackPanel x:Name="ControlsStack" Grid.Column="0" Margin="20" Orientation="Vertical">
                 <GroupBox Header="Lunch time!">
                     <Button Command="{Binding DecideLunchCommand}">Decide for me</Button>
                 </GroupBox>
                 <GroupBox Header="Manage Shops">
-                    <StackPanel>
+                    <StackPanel Orientation="Vertical">
                         <Button Command="{Binding ShowAddShopCommand}">Add Shop</Button>
                         <Button Command="{Binding ShowEditShopCommand}">Update Shop</Button>
                         <Button Command="{Binding ShowDeleteShopCommand}">Delete Shop</Button>
@@ -47,7 +37,7 @@
                 </GroupBox>
             </StackPanel>
 
-            <StackPanel x:Name="OutputStack" Grid.Column="1" Margin="20">
+            <StackPanel x:Name="OutputStack" Grid.Column="1" Margin="20" Orientation="Vertical">
                 <TextBlock Text="{Binding Result}" Background="Azure" />
                 <views:AddShopView 
                     DataContext="{Binding AddShopViewModel}" 
