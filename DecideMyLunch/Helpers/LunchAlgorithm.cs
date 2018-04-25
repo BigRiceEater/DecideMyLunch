@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DecideMyLunch.Interfaces;
 using DecideMyLunch.Models;
 
-namespace DecideMyLunch
+namespace DecideMyLunch.Helpers
 {
-    //TODO: Move LunchAlgorithm to Helper folder
     public class LunchAlgorithm
     {
         private IDataStore _dataService;
