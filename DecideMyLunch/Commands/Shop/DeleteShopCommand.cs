@@ -2,25 +2,20 @@
 
 namespace DecideMyLunch.Commands.Shop
 {
-    public class DeleteShopCommand : Command
+    public class DeleteShopCommand : ShopCommand
     {
-        private DeleteShopViewModel _vm;
 
-        public DeleteShopCommand(DeleteShopViewModel vm)
-        {
-            _vm = vm;
-        }
+        public DeleteShopCommand(ShopViewModel vm) : base (vm) { }
 
         public override bool CanExecute(object parameter)
         {
-            var shop = parameter as Models.Shop;
-            return shop != null;
+            return parameter is Models.Shop;
         }
 
         public override void Execute(object parameter)
         {
             var shop = parameter as Models.Shop;
-            _vm?.DeleteShop(shop);
+            (_vm as DeleteShopViewModel)?.DeleteShop(shop);
         }
     }
 }

@@ -82,6 +82,7 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Shop\DeleteShopCommand.cs" />
     <Compile Include="Commands\Shop\EditShopCommand.cs" />
+    <Compile Include="Commands\Shop\ShopCommand.cs" />
     <Compile Include="Commands\Show\ShowCommand.cs" />
     <Compile Include="Commands\Show\ShowDeleteShopCommand.cs" />
     <Compile Include="Commands\Show\ShowEditShopCommand.cs" />

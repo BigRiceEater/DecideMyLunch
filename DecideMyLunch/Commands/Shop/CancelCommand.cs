@@ -2,14 +2,9 @@
 
 namespace DecideMyLunch.Commands.Shop
 {
-    public class CancelCommand : Command
+    public class CancelCommand : ShopCommand
     {
-        private readonly ShopViewModel _vm;
-
-        public CancelCommand(ShopViewModel vm)
-        {
-            _vm = vm;
-        }
+        public CancelCommand(ShopViewModel vm) : base(vm) { }
 
         public override void Execute(object parameter)
         {

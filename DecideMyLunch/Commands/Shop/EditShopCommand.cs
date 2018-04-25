@@ -2,24 +2,18 @@
 
 namespace DecideMyLunch.Commands.Shop
 {
-    public class EditShopCommand : Command
+    public class EditShopCommand : ShopCommand
     {
-        private EditShopViewModel _vm;
-
-        public EditShopCommand(EditShopViewModel vm)
-        {
-            _vm = vm;
-        }
+        public EditShopCommand(ShopViewModel vm) : base (vm) { }
         public override bool CanExecute(object parameter)
         {
-            var shop = parameter as Models.Shop;
-            return shop != null;
+            return parameter is Models.Shop;
         }
 
         public override void Execute(object parameter)
         {
             var shop = parameter as Models.Shop;
-            _vm.UpdateShop(shop);
+            (_vm as EditShopViewModel)?.UpdateShop(shop);
         }
     }
 }

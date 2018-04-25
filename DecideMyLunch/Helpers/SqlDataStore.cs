@@ -102,7 +102,7 @@ namespace DecideMyLunch.Helpers
             }
             return items;
         }
-
+        //TODO: Use event handler instead of delegate to prevent re-assignment
         public DidInsertShopDelegate DidInsertShopDelegate { get; set; }
 
         private string GenerateGuid()

@@ -3,13 +3,9 @@ using DecideMyLunch.ViewModels;
 
 namespace DecideMyLunch.Commands.Shop
 {
-    public class AddShopCommand : Command
+    public class AddShopCommand : ShopCommand
     {
-        private AddShopViewModel _viewmodel;
-        public AddShopCommand(AddShopViewModel viewmodel)
-        {
-            _viewmodel = viewmodel;
-        }
+        public AddShopCommand(ShopViewModel vm) : base(vm) { }
 
         public override bool CanExecute (object parameter)
         {
@@ -20,7 +16,7 @@ namespace DecideMyLunch.Commands.Shop
         public override void Execute(object parameter)
         {
             var shop = parameter as Models.Shop;
-            _viewmodel.AddShop(shop);
+            (_vm as AddShopViewModel)?.AddShop(shop);
         }
     }
 }
