@@ -8,14 +8,9 @@ using DecideMyLunch.ViewModels;
 
 namespace DecideMyLunch.Commands
 {
-    public class ShowDeleteShopCommand : Command
+    public class ShowDeleteShopCommand : ShowCommand
     {
-        private readonly MainViewModel _vm;
-
-        public ShowDeleteShopCommand(MainViewModel vm)
-        {
-            _vm = vm;
-        }
+        public ShowDeleteShopCommand(MainViewModel vm) : base(vm) { }
 
         public override void Execute(object parameter)
         {
