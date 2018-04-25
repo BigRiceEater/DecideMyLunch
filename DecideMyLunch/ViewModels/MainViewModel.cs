@@ -123,12 +123,13 @@ namespace DecideMyLunch.ViewModels
 
         private void UpdateStatistics()
         {
-            TotalNumShops = _data?.GetShops().Count.ToString();
+            TotalNumShops = _data?.GetAllShops().Count.ToString();
         }
 
         public void DecideLunch()
         {
-            Result = "Yes!";
+            var shop = _lunchAlgorithm.GetShop();
+            Result = $"Let's go to {shop.Name}!";
             UpdateAppStatus("Lunch decided!");
         }
 

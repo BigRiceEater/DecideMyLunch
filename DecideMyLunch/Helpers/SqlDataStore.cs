@@ -66,7 +66,7 @@ namespace DecideMyLunch.Helpers
             }
         }
 
-        public List<Shop> GetShops()
+        public List<Shop> GetAllShops()
         {
             //TODO: Order by A-Z
             var items = new List<Shop>();
@@ -76,6 +76,23 @@ namespace DecideMyLunch.Helpers
                 {
                     conn.CreateTable<Shop>();
                     items = conn.Table<Shop>().ToList();
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                }
+            }
+            return items;
+        }
+
+        public List<Shop> GetAvailableShops()
+        {
+            var items = new List<Shop>();
+            using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
+            {
+                try
+                {
+                    items = conn.Table<Shop>().Where(p => !p.Disabled).ToList();
                 }
                 catch (Exception e)
                 {

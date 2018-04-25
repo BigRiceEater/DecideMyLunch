@@ -69,7 +69,7 @@ namespace DecideMyLunch.ViewModels
 
         private void InitShops()
         {
-            Shops = new ObservableCollection<Shop>(_data.GetShops());
+            Shops = new ObservableCollection<Shop>(_data.GetAllShops());
         }
 
         public void ViewCancelled()

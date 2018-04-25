@@ -11,13 +11,13 @@ namespace DecideMyLunch.Helpers
         public LunchAlgorithm(IDataStore dataService)
         {
             _dataService = dataService;
+            _generator = new Random((int)System.DateTime.Now.Ticks);
         }
         public Shop GetShop()
         {
-            var shops = _dataService.GetShops();
+            var shops = _dataService.GetAvailableShops();
             var index = _generator.Next(maxValue:shops.Count);
             return shops[index];
-            //TODO: Check if shop is actually disabled before returning result.
         }
     }
 }

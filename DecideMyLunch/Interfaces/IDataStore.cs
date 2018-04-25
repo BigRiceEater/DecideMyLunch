@@ -14,7 +14,9 @@ namespace DecideMyLunch.Interfaces
         void DeleteShop(Shop item);
         void UpdateShop(Shop item);
 
-        List<Shop> GetShops();
+        List<Shop> GetAllShops();
+        List<Shop> GetAvailableShops();
+   
         DidInsertShopDelegate DidInsertShopDelegate { get; set; }
     }
 }
