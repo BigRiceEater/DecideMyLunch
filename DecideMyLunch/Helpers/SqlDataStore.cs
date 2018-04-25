@@ -24,7 +24,9 @@ namespace DecideMyLunch.Helpers
                     var rows = conn.Insert(item);
                     if (rows > 0)
                     {
-                        DidInsertShopDelegate?.Invoke(item);
+                        var items = conn.Table<Shop>().OrderBy(_ => _.Name, StringComparer.OrdinalIgnoreCase).ToList();
+                        var pos = items.FindIndex(p => p.ID.Equals(item.ID));
+                        DidInsertShopDelegate?.Invoke(item,pos);
                     }
                 }
                 catch (Exception e)
@@ -74,7 +76,7 @@ namespace DecideMyLunch.Helpers
                 try
                 {
                     conn.CreateTable<Shop>();
-                    items = conn.Table<Shop>().OrderBy(p => p.Name).ToList();
+                    items = conn.Table<Shop>().OrderBy(p => p.Name, StringComparer.OrdinalIgnoreCase).ToList();
                 }
                 catch (Exception e)
                 {

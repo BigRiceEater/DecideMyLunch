@@ -79,10 +79,9 @@ namespace DecideMyLunch.ViewModels
             UpdateAppStatus?.Invoke("Cancelled action");
         }
 
-        protected void AddShopToList(Shop shop)
+        protected void AddShopToList(Shop shop, int pos)
         {
-            //TODO: Insert alphabetically
-            Shops.Add(shop);
+            Shops.Insert(pos,shop);
         }
 
         protected void RemoveShopFromList(Shop shop)

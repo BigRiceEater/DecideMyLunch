@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using DecideMyLunch.Annotations;
 using DecideMyLunch.Commands;
+using DecideMyLunch.Delegates;
 using DecideMyLunch.Helpers;
 using DecideMyLunch.Interfaces;
 using DecideMyLunch.Models;
@@ -30,14 +31,18 @@ namespace DecideMyLunch.ViewModels
             base (dataStore, del)
         {
             AddShopCommand = new AddShopCommand(this);
+            dataStore.DidInsertShopDelegate = new DidInsertShopDelegate(
+                (item, pos) =>
+                {
+                    AddShopToList(item, pos);
+                    UpdateAppStatus($"Added shop {item.Name}");
+                });
         }
 
         public void AddShop(Shop item)
         {
             _data.InsertShop(item);
             SelectedShop = new Shop();
-            AddShopToList(item);
-            UpdateAppStatus($"Added shop {item.Name}");
         }
 
         public override void ShowView()

@@ -88,13 +88,7 @@ namespace DecideMyLunch.ViewModels
 
             Result = "Nothing yet";
 
-            _data = new SqlDataStore
-            {
-                DidInsertShopDelegate = new DidInsertShopDelegate(item =>
-                    {
-                        ApplicationStatus = $"Successfully added {item.Name}";
-                    }
-                )};
+            _data = new SqlDataStore();
 
             _lunchAlgorithm = new LunchAlgorithm(_data);
 
