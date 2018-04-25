@@ -68,14 +68,13 @@ namespace DecideMyLunch.Helpers
 
         public List<Shop> GetAllShops()
         {
-            //TODO: Order by A-Z
             var items = new List<Shop>();
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
                 try
                 {
                     conn.CreateTable<Shop>();
-                    items = conn.Table<Shop>().ToList();
+                    items = conn.Table<Shop>().OrderBy(p => p.Name).ToList();
                 }
                 catch (Exception e)
                 {

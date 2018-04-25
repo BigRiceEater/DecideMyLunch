@@ -81,6 +81,7 @@ namespace DecideMyLunch.ViewModels
 
         protected void AddShopToList(Shop shop)
         {
+            //TODO: Insert alphabetically
             Shops.Add(shop);
         }
 
