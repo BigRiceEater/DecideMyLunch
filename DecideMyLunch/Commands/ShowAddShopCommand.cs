@@ -8,25 +8,18 @@ using DecideMyLunch.ViewModels;
 
 namespace DecideMyLunch.Commands
 {
-    public class ShowAddShopCommand : ICommand
+    public class ShowAddShopCommand : Command
     {
-        private MainViewModel _viewModel;
+        private readonly MainViewModel _vm;
 
         public ShowAddShopCommand(MainViewModel vm)
         {
-            _viewModel = vm;
+            _vm = vm;
         }
 
-        public bool CanExecute(object parameter)
+        public override void Execute(object parameter)
         {
-            return true;
+            _vm?.ShowAddShop();
         }
-
-        public void Execute(object parameter)
-        {
-            _viewModel?.ShowAddShop();
-        }
-
-        public event EventHandler CanExecuteChanged;
     }
 }

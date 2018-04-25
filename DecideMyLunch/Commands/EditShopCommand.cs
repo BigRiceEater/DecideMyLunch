@@ -9,7 +9,7 @@ using DecideMyLunch.ViewModels;
 
 namespace DecideMyLunch.Commands
 {
-    public class EditShopCommand : ICommand
+    public class EditShopCommand : Command
     {
         private EditShopViewModel _vm;
 
@@ -17,22 +17,16 @@ namespace DecideMyLunch.Commands
         {
             _vm = vm;
         }
-        public bool CanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
             var shop = parameter as Shop;
             return shop != null;
         }
 
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             var shop = parameter as Shop;
             _vm.UpdateShop(shop);
-        }
-
-        public event EventHandler CanExecuteChanged
-        {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
         }
     }
 }

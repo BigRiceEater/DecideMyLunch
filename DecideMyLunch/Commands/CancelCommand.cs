@@ -8,7 +8,7 @@ using DecideMyLunch.ViewModels;
 
 namespace DecideMyLunch.Commands
 {
-    public class CancelCommand : ICommand
+    public class CancelCommand : Command
     {
         private readonly ShopViewModel _vm;
 
@@ -16,16 +16,10 @@ namespace DecideMyLunch.Commands
         {
             _vm = vm;
         }
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
 
-        public void Execute(object parameter)
+        public override void Execute(object parameter)
         {
             _vm.ViewCancelled();
         }
-
-        public event EventHandler CanExecuteChanged;
     }
 }
