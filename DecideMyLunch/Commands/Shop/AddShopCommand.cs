@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using DecideMyLunch.Models;
 using DecideMyLunch.ViewModels;
 
-namespace DecideMyLunch.Commands
+namespace DecideMyLunch.Commands.Shop
 {
     public class AddShopCommand : Command
     {
@@ -19,13 +13,13 @@ namespace DecideMyLunch.Commands
 
         public override bool CanExecute (object parameter)
         {
-            var item = parameter as Shop;
+            var item = parameter as Models.Shop;
             return !String.IsNullOrWhiteSpace(item?.Name);
         }
 
         public override void Execute(object parameter)
         {
-            var shop = parameter as Shop;
+            var shop = parameter as Models.Shop;
             _viewmodel.AddShop(shop);
         }
     }

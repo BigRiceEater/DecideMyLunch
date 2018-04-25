@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DecideMyLunch.Commands;
+using DecideMyLunch.Commands.Shop;
 using DecideMyLunch.Interfaces;
 using DecideMyLunch.Models;
 

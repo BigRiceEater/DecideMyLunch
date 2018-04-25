@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using DecideMyLunch.Models;
-using DecideMyLunch.ViewModels;
+﻿using DecideMyLunch.ViewModels;
 
-namespace DecideMyLunch.Commands
+namespace DecideMyLunch.Commands.Shop
 {
     public class DeleteShopCommand : Command
     {
@@ -20,13 +13,13 @@ namespace DecideMyLunch.Commands
 
         public override bool CanExecute(object parameter)
         {
-            var shop = parameter as Shop;
+            var shop = parameter as Models.Shop;
             return shop != null;
         }
 
         public override void Execute(object parameter)
         {
-            var shop = parameter as Shop;
+            var shop = parameter as Models.Shop;
             _vm?.DeleteShop(shop);
         }
     }
