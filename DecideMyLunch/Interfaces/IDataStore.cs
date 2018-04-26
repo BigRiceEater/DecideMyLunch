@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DecideMyLunch.Delegates;
+using DecideMyLunch.Events;
 using DecideMyLunch.Models;
 
 namespace DecideMyLunch.Interfaces

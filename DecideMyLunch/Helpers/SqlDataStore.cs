@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DecideMyLunch.Delegates;
+using DecideMyLunch.Events;
 using DecideMyLunch.Interfaces;
 using DecideMyLunch.Models;
 using SQLite;

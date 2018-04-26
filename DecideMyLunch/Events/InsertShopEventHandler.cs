@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DecideMyLunch.Models;
 
-namespace DecideMyLunch.Delegates
+namespace DecideMyLunch.Events
 {
 
     public delegate void InsertShopEventHandler(object sender, InsertShopEventArgs e);

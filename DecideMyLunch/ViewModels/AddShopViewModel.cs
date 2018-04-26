@@ -9,7 +9,7 @@ using System.Windows.Input;
 using DecideMyLunch.Annotations;
 using DecideMyLunch.Commands;
 using DecideMyLunch.Commands.Shop;
-using DecideMyLunch.Delegates;
+using DecideMyLunch.Events;
 using DecideMyLunch.Helpers;
 using DecideMyLunch.Interfaces;
 using DecideMyLunch.Models;

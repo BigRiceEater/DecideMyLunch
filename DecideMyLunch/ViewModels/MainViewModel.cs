@@ -11,7 +11,7 @@ using System.Windows.Input;
 using DecideMyLunch.Annotations;
 using DecideMyLunch.Commands;
 using DecideMyLunch.Commands.Show;
-using DecideMyLunch.Delegates;
+using DecideMyLunch.Events;
 using DecideMyLunch.Enums;
 using DecideMyLunch.Helpers;
 using DecideMyLunch.Interfaces;
