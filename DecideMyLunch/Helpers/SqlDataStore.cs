@@ -24,9 +24,10 @@ namespace DecideMyLunch.Helpers
                     var rows = conn.Insert(item);
                     if (rows > 0)
                     {
-                        var items = conn.Table<Shop>().OrderBy(_ => _.Name, StringComparer.OrdinalIgnoreCase).ToList();
+                        var items = conn.Table<Shop>().OrderBy(
+                            _ => _.Name, StringComparer.OrdinalIgnoreCase).ToList();
                         var pos = items.FindIndex(p => p.ID.Equals(item.ID));
-                        DidInsertShopDelegate?.Invoke(item,pos);
+                        InsertShopEventHandler?.Invoke(this, new InsertShopEventArgs(item,pos));
                     }
                 }
                 catch (Exception e)
@@ -102,8 +103,8 @@ namespace DecideMyLunch.Helpers
             }
             return items;
         }
-        //TODO: Use event handler instead of delegate to prevent re-assignment
-        public DidInsertShopDelegate DidInsertShopDelegate { get; set; }
+
+        public event InsertShopEventHandler InsertShopEventHandler;
 
         private string GenerateGuid()
         {

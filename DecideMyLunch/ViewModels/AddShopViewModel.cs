@@ -32,12 +32,11 @@ namespace DecideMyLunch.ViewModels
             base (dataStore, del)
         {
             AddShopCommand = new AddShopCommand(this);
-            dataStore.DidInsertShopDelegate = new DidInsertShopDelegate(
-                (item, pos) =>
-                {
-                    AddShopToList(item, pos);
-                    UpdateAppStatus($"Added shop {item.Name}");
-                });
+            dataStore.InsertShopEventHandler += (sender, args) =>
+            {
+                AddShopToList(args.Item, args.InsertedAtIndex);
+                UpdateAppStatus($"Added shop {args.Item.Name}");
+            };
         }
 
         public void AddShop(Shop item)

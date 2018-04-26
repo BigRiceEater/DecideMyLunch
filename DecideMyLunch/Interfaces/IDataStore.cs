@@ -16,7 +16,7 @@ namespace DecideMyLunch.Interfaces
 
         List<Shop> GetAllShops();
         List<Shop> GetAvailableShops();
-   
-        DidInsertShopDelegate DidInsertShopDelegate { get; set; }
+
+        event InsertShopEventHandler InsertShopEventHandler;
     }
 }
