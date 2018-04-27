@@ -9,6 +9,7 @@ using System.Windows.Input;
 using DecideMyLunch.Annotations;
 using DecideMyLunch.Commands;
 using DecideMyLunch.Commands.Shop;
+using DecideMyLunch.Enums;
 using DecideMyLunch.Events;
 using DecideMyLunch.Helpers;
 using DecideMyLunch.Interfaces;
@@ -37,10 +38,24 @@ namespace DecideMyLunch.ViewModels
                 AddShopToList(args.Item, args.InsertedAtIndex);
                 UpdateAppStatus($"Added shop {args.Item.Name}");
             };
+            dataStore.ShopActionErrorEventHandler += (sender, args) =>
+            {
+                switch (args.Error)
+                {
+                    case EShopActionError.ShopNameAlreadyExist:
+                        UpdateAppStatus($"Shop {args.Shop.Name} already exists!");
+                        break;
+                    default:
+                        UpdateAppStatus("Undefined error in add function");
+                        break;
+                }
+
+            };
         }
 
         public void AddShop(Shop item)
         {
+            //TODO removing leading and trailing whitespace.
             _data.InsertShop(item);
             SelectedShop = new Shop();
         }

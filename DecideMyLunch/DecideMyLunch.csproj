@@ -86,8 +86,10 @@
     <Compile Include="Commands\Show\ShowCommand.cs" />
     <Compile Include="Commands\Show\ShowDeleteShopCommand.cs" />
     <Compile Include="Commands\Show\ShowEditShopCommand.cs" />
+    <Compile Include="Enums\EShopActionError.cs" />
     <Compile Include="Events\InsertShopEventHandler.cs" />
     <Compile Include="Enums\EShopView.cs" />
+    <Compile Include="Events\ShopActionErrorEventHandler.cs" />
     <Compile Include="Helpers\ToggleShopViewVisibility.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DeleteShopViewModel.cs" />

@@ -12,6 +12,7 @@ namespace DecideMyLunch.Events
 
     public class InsertShopEventArgs : EventArgs
     {
+        //TODO: Convert to auto property C# 6.0
         private readonly Shop shop;
         private readonly int insertedAtIndex;
 

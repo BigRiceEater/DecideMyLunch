@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DecideMyLunch.Enums;
 using DecideMyLunch.Events;
 using DecideMyLunch.Interfaces;
 using DecideMyLunch.Models;
@@ -18,16 +19,29 @@ namespace DecideMyLunch.Helpers
             {
                 try
                 {   
-                    //TODO: Check if shopname already exists
                     conn.CreateTable<Shop>();
-                    item.ID = this.GenerateGuid();
-                    var rows = conn.Insert(item);
-                    if (rows > 0)
+
+                    var sameShop = conn.Table<Shop>().
+                        FirstOrDefault(_ => _.Name.ToLower().Equals(item.Name));
+
+                    if (sameShop != null)
                     {
-                        var items = conn.Table<Shop>().OrderBy(
-                            _ => _.Name, StringComparer.OrdinalIgnoreCase).ToList();
-                        var pos = items.FindIndex(p => p.ID.Equals(item.ID));
-                        InsertShopEventHandler?.Invoke(this, new InsertShopEventArgs(item,pos));
+                        ShopActionErrorEventHandler?.Invoke(
+                            this, new ShopActionErrorEventArgs(
+                                item, EShopActionError.ShopNameAlreadyExist)
+                            );
+                    }
+                    else
+                    {
+                        item.ID = this.GenerateGuid();
+                        var rows = conn.Insert(item);
+                        if (rows > 0)
+                        {
+                            var items = conn.Table<Shop>().OrderBy(
+                                _ => _.Name, StringComparer.OrdinalIgnoreCase).ToList();
+                            var pos = items.FindIndex(p => p.ID.Equals(item.ID));
+                            InsertShopEventHandler?.Invoke(this, new InsertShopEventArgs(item, pos));
+                        }
                     }
                 }
                 catch (Exception e)
@@ -105,6 +119,7 @@ namespace DecideMyLunch.Helpers
         }
 
         public event InsertShopEventHandler InsertShopEventHandler;
+        public event ShopActionErrorEventHandler ShopActionErrorEventHandler;
 
         private string GenerateGuid()
         {

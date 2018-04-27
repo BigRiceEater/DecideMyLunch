@@ -18,5 +18,6 @@ namespace DecideMyLunch.Interfaces
         List<Shop> GetAvailableShops();
 
         event InsertShopEventHandler InsertShopEventHandler;
+        event ShopActionErrorEventHandler ShopActionErrorEventHandler;
     }
 }
