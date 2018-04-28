@@ -35,8 +35,8 @@ namespace DecideMyLunch.ViewModels
             AddShopCommand = new AddShopCommand(this);
             dataStore.InsertShopEventHandler += (sender, args) =>
             {
-                AddShopToList(args.Item, args.InsertedAtIndex);
-                UpdateAppStatus($"Added shop {args.Item.Name}");
+                AddShopToList(args.Shop, args.InsertedAtIndex);
+                UpdateAppStatus($"Added shop {args.Shop.Name}");
             };
             dataStore.ShopActionErrorEventHandler += (sender, args) =>
             {

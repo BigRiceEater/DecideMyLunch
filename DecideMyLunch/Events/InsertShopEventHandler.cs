@@ -12,25 +12,14 @@ namespace DecideMyLunch.Events
 
     public class InsertShopEventArgs : EventArgs
     {
-        //TODO: Convert to auto property C# 6.0
-        private readonly Shop shop;
-        private readonly int insertedAtIndex;
+        //C# 6.0 Auto Property with readonly backing field
+        public Shop Shop { get; }
+        public int InsertedAtIndex { get; }
 
         public InsertShopEventArgs(Shop shop, int index)
         {
-            this.shop = shop;
-            this.insertedAtIndex = index;
+            Shop = shop;
+            InsertedAtIndex = index;
         }
-
-        public Shop Item
-        {
-            get => shop;
-        }
-
-        public int InsertedAtIndex
-        {
-            get => insertedAtIndex;
-        }
-
     }
 }
