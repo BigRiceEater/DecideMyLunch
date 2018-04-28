@@ -22,10 +22,11 @@ namespace DecideMyLunch.Helpers
                     conn.CreateTable<Shop>();
 
                     var sameShop = conn.Table<Shop>().
-                        FirstOrDefault(_ => _.Name.ToLower().Equals(item.Name));
+                        FirstOrDefault(_ => _.Name.ToLower().Equals(item.Name.ToLower()));
 
                     if (sameShop != null)
                     {
+                        //TODO: Bug adding same shop name
                         ShopActionErrorEventHandler?.Invoke(
                             this, new ShopActionErrorEventArgs(
                                 item, EShopActionError.ShopNameAlreadyExist)
