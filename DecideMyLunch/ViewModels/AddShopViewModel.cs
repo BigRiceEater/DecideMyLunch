@@ -55,7 +55,6 @@ namespace DecideMyLunch.ViewModels
 
         public void AddShop(Shop item)
         {
-            //TODO removing leading and trailing whitespace.
             _data.InsertShop(item);
             SelectedShop = new Shop();
         }

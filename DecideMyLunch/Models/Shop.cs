@@ -11,7 +11,15 @@ namespace DecideMyLunch.Models
     {
         [PrimaryKey]
         public string ID { get; set; }
-        public string Name { get; set; }
+
+        private string _name;
+        public string Name
+        {
+            get => _name;
+            //BUG: can't enter space between two words. Check at insert instead.
+            set => _name = value.Trim();
+        }
+
         public bool Disabled { get; set; } = false;
     }
 }
