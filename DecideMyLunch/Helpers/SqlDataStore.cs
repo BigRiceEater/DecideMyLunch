@@ -13,6 +13,7 @@ namespace DecideMyLunch.Helpers
 {
     public class SqlDataStore : IDataStore
     {
+        #region CRUD Methods
         public void InsertShop(Shop item)
         {
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
@@ -135,10 +136,14 @@ namespace DecideMyLunch.Helpers
             }
             return items;
         }
+        #endregion
 
+        #region Events
         public event ShopActionEventHandler ShopActionEventHandler;
         public event ShopActionErrorEventHandler ShopActionErrorEventHandler;
+        #endregion
 
+        #region Methods
         private Guid GenerateGuid()
         {
             
@@ -163,5 +168,6 @@ namespace DecideMyLunch.Helpers
                 return guid;
             }
         }
+        #endregion 
     }
 }
