@@ -9,6 +9,10 @@ using DecideMyLunch.Models;
 namespace DecideMyLunch.Events
 {
 
+    // TODO: Don't have generic action event handler; 
+    // introduces bug when the eventType is not checked. 
+    // Safer to have individual events? but more work?
+
     public delegate void ShopActionEventHandler(object sender, ShopActionEventArgs e);
 
     public class ShopActionEventArgs : EventArgs

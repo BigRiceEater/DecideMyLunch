@@ -37,8 +37,11 @@ namespace DecideMyLunch.ViewModels
 
         private void OnShopActionEventHandler(object sender, ShopActionEventArgs e)
         {
-            AddShopToList(e.Shop, e.Index.GetValueOrDefault());
-            UpdateAppStatus($"Added shop {e.Shop.Name}");
+            if (e.EventType == EShopActionEvent.InsertedShop)
+            {
+                AddShopToList(e.Shop, e.Index.GetValueOrDefault());
+                UpdateAppStatus($"Added shop {e.Shop.Name}");
+            }
         }
 
         public void AddShop(Shop item)
