@@ -19,7 +19,6 @@ using DecideMyLunch.Models;
 
 namespace DecideMyLunch.ViewModels
 {
-    //TODO: Lunch result should have its own view
     //TODO: Add button 'Show disabled shops'
     //TODO: Add label 'Num of disabled shops'
 
