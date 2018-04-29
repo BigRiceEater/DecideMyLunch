@@ -42,7 +42,8 @@ namespace DecideMyLunch.Helpers
                             var items = conn.Table<Shop>().OrderBy(
                                 _ => _.Name, StringComparer.OrdinalIgnoreCase).ToList();
                             var pos = items.FindIndex(p => p.ID.Equals(item.ID));
-                            InsertShopEventHandler?.Invoke(this, new InsertShopEventArgs(item, pos));
+                            ShopActionEventHandler?.Invoke(this, 
+                                new ShopActionEventArgs(EShopActionEvent.InsertedShop, item, pos));
                         }
                     }
                 }
@@ -120,7 +121,7 @@ namespace DecideMyLunch.Helpers
             return items;
         }
 
-        public event InsertShopEventHandler InsertShopEventHandler;
+        public event ShopActionEventHandler ShopActionEventHandler;
         public event ShopActionErrorEventHandler ShopActionErrorEventHandler;
 
         private string GenerateGuid()
