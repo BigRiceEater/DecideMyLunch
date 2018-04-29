@@ -21,14 +21,6 @@ namespace DecideMyLunch.ViewModels
     {
         public AddShopCommand AddShopCommand { get; set; }
 
-        private string _newShopName;
-
-        public string NewShopName
-        {
-            get { return _newShopName; }
-            set { _newShopName = value; OnPropertyChanged(nameof(NewShopName)); }
-        }
-
         public AddShopViewModel(IDataStore dataStore, UpdateAppStatusDelegate del) : 
             base (dataStore, del)
         {
