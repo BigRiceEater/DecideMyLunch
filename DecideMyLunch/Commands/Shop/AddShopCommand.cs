@@ -1,5 +1,5 @@
-﻿using System;
-using DecideMyLunch.ViewModels;
+﻿using DecideMyLunch.ViewModels;
+using static System.String;
 
 namespace DecideMyLunch.Commands.Shop
 {
@@ -10,8 +10,7 @@ namespace DecideMyLunch.Commands.Shop
         public override bool CanExecute (object parameter)
         {
             var item = parameter as Models.Shop;
-            //TODO: using static System.String;
-            return !String.IsNullOrWhiteSpace(item?.Name);
+            return !IsNullOrWhiteSpace(item?.Name);
         }
 
         public override void Execute(object parameter)
