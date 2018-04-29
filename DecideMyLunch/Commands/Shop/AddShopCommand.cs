@@ -10,6 +10,7 @@ namespace DecideMyLunch.Commands.Shop
         public override bool CanExecute (object parameter)
         {
             var item = parameter as Models.Shop;
+            //TODO: using static System.String;
             return !String.IsNullOrWhiteSpace(item?.Name);
         }
 
