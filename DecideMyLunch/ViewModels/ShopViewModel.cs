@@ -19,8 +19,8 @@ namespace DecideMyLunch.ViewModels
 {
     public abstract class ShopViewModel : BaseViewModel
     {
+        #region Properties
         private Visibility _visibility;
-
         public Visibility Visibility
         {
             get { return _visibility; }
@@ -51,14 +51,23 @@ namespace DecideMyLunch.ViewModels
             }
         }
 
+        #endregion
+
+
+        #region Commands
         private ICommand _cancelCommand;
         public ICommand CancelCommand
         {
             get => _cancelCommand;
             set { _cancelCommand = value; OnPropertyChanged(nameof(CancelCommand));}
         }
+        #endregion
 
+        #region Fields
         protected IDataStore _data;
+        #endregion
+
+        #region Constructors
         public ShopViewModel(IDataStore dataStore, UpdateAppStatusDelegate del)
         {
             CancelCommand = new CancelCommand(this);
@@ -68,12 +77,16 @@ namespace DecideMyLunch.ViewModels
             Visibility = Visibility.Collapsed;
             InitShops();
         }
+        #endregion
 
+        #region Methods
         private void InitShops()
         {
             Shops = new ObservableCollection<Shop>(_data.GetAllShops());
         }
+        #endregion
 
+        #region Command Callbacks
         public void ViewCancelled()
         {
             Visibility = Visibility.Collapsed;
@@ -96,5 +109,6 @@ namespace DecideMyLunch.ViewModels
             Visibility = Visibility.Visible;
             SelectedShop = null;
         }
+        #endregion
     }
 }

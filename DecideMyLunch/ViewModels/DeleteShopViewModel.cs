@@ -17,15 +17,21 @@ namespace DecideMyLunch.ViewModels
     {
         //TODO: Add DeleteAllShops Command
         //TODO: Event handler for deleted shop
-        public ICommand DeleteShopCommand { get; set; }
 
+        #region Commands
+        public ICommand DeleteShopCommand { get; set; }
+        #endregion
+
+        #region Constructors
         public DeleteShopViewModel(IDataStore dataStore, UpdateAppStatusDelegate del) : 
             base (dataStore, del)
         {
             DeleteShopCommand = new DeleteShopCommand(this);
             _data.ShopActionEventHandler += OnShopActionEventHandler;
         }
+        #endregion
 
+        #region Event Handlers
         private void OnShopActionEventHandler(object sender, ShopActionEventArgs e)
         {
             if (e.EventType == EShopActionEvent.DeletedShop)
@@ -34,11 +40,14 @@ namespace DecideMyLunch.ViewModels
                 UpdateAppStatus($"Deleted shop {e.Shop.Name}");
             }
         }
+        #endregion
 
+        #region Command Callbacks
         public void DeleteShop(Shop shop)
         {
             _data.DeleteShop(shop);
             SelectedShop = null;
         }
+        #endregion
     }
 }

@@ -19,8 +19,11 @@ namespace DecideMyLunch.ViewModels
 {
     public class AddShopViewModel : ShopViewModel
     {
+        #region Commands
         public AddShopCommand AddShopCommand { get; set; }
+        #endregion
 
+        #region Constructors
         public AddShopViewModel(IDataStore dataStore, UpdateAppStatusDelegate del) : 
             base (dataStore, del)
         {
@@ -28,7 +31,9 @@ namespace DecideMyLunch.ViewModels
             _data.ShopActionEventHandler += OnShopActionEventHandler;
             _data.ShopActionErrorEventHandler += OnShopActionErrorEventHandler;
         }
+        #endregion
 
+        #region Event Handlers
         private void OnShopActionErrorEventHandler(object sender, ShopActionErrorEventArgs e)
         {
             if(e.Error == EShopActionError.ShopNameAlreadyExist)
@@ -43,7 +48,9 @@ namespace DecideMyLunch.ViewModels
                 UpdateAppStatus($"Added shop {e.Shop.Name}");
             }
         }
+        #endregion 
 
+        #region Command Callbacks
         public void AddShop(Shop item)
         {
             _data.InsertShop(item);
@@ -55,5 +62,7 @@ namespace DecideMyLunch.ViewModels
             base.ShowView();
             SelectedShop = new Shop();
         }
+
+        #endregion 
     }
 }

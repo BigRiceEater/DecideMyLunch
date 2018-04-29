@@ -11,15 +11,21 @@ namespace DecideMyLunch.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        #region Events
         public event PropertyChangedEventHandler PropertyChanged;
+        #endregion 
 
+        #region Methods
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        #endregion
 
+        #region Delegates
         public delegate void UpdateAppStatusDelegate(string msg);
         protected UpdateAppStatusDelegate UpdateAppStatus { get; set; }
+        #endregion 
     }
 }

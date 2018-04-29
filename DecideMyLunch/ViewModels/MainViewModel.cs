@@ -24,6 +24,7 @@ namespace DecideMyLunch.ViewModels
 
     public class MainViewModel : BaseViewModel
     {
+        #region Properties
         private string _applicationStatus;
         public string ApplicationStatus
         {
@@ -39,16 +40,12 @@ namespace DecideMyLunch.ViewModels
             set { _totalNumShops = value; OnPropertyChanged(nameof(TotalNumShops));}
         }
 
-        //TODO: Add code regions 
-
         private ResultViewModel _resultViewModel;
-
         public ResultViewModel ResultViewModel
         {
             get => _resultViewModel;
             set { _resultViewModel = value; OnPropertyChanged(nameof(ResultViewModel));}
         }
-
 
         private AddShopViewModel _addShopViewModel;
         public AddShopViewModel AddShopViewModel
@@ -71,14 +68,21 @@ namespace DecideMyLunch.ViewModels
             set { _deleteShopViewModel = value; OnPropertyChanged(nameof(DeleteShopViewModel));}
         }
 
+        #endregion
+
+        #region Commands
         public ICommand DecideLunchCommand { get; set; }
         public ICommand ShowAddShopCommand { get; set; }
         public ICommand ShowEditShopCommand { get; set; }
         public ICommand ShowDeleteShopCommand { get; set; }
+        #endregion
 
+        #region Fields
         private readonly IDataStore _data;
         private readonly ToggleShopViewVisibility _visibilityToggler;
+        #endregion
 
+        #region Constructors
         public MainViewModel() 
         {
             DecideLunchCommand = new DecideLunchCommand(this);
@@ -113,12 +117,16 @@ namespace DecideMyLunch.ViewModels
             ApplicationStatus = "Ready";
 
         }
+        #endregion
 
+        #region Methods
         private void UpdateStatistics()
         {
             TotalNumShops = _data?.GetAllShops().Count.ToString();
         }
+        #endregion
 
+        #region Command Callbacks
         public void DecideLunch()
         {
             ResultViewModel.DecideLunch();
@@ -142,5 +150,6 @@ namespace DecideMyLunch.ViewModels
             _visibilityToggler.SetVisibility(EShopView.Delete);
             UpdateAppStatus("Showing delete shop section");
         }
+        #endregion
     }
 }
