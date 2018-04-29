@@ -44,7 +44,6 @@ namespace DecideMyLunch.ViewModels
             get => _shops;
             set
             {
-                //TODO: can we use ?? null coalescing
                 if (_shops == null)
                 {
                     _shops = value;
