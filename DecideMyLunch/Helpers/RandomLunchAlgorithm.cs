@@ -1,19 +1,20 @@
 ﻿using System;
+using DecideMyLunch.Abstract;
 using DecideMyLunch.Interfaces;
 using DecideMyLunch.Models;
 
 namespace DecideMyLunch.Helpers
 {
-    public class LunchAlgorithm
+    public class RandomLunchAlgorithm : LunchAlgorithm
     {
-        private IDataStore _dataService;
-        private Random _generator;
-        public LunchAlgorithm(IDataStore dataService)
+        private readonly IDataStore _dataService;
+        private readonly Random _generator;
+        public RandomLunchAlgorithm(IDataStore dataService) : base (dataService)
         {
             _dataService = dataService;
             _generator = new Random((int)System.DateTime.Now.Ticks);
         }
-        public Shop GetShop()
+        public override Shop GetShop()
         {
             var shops = _dataService.GetAvailableShops();
             var index = _generator.Next(maxValue:shops.Count);

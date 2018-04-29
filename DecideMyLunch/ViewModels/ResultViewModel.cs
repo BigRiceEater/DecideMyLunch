@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DecideMyLunch.Abstract;
 using DecideMyLunch.Helpers;
+using DecideMyLunch.Interfaces;
 
 namespace DecideMyLunch.ViewModels
 {
     public class ResultViewModel : BaseViewModel
     {
         #region Properties
-        //TODO: Interface for lunch algorithm
-        public LunchAlgorithm LunchAlgorithm { get; }
+
+        public ILunchAlgorithm RandomLunchAlgorithm { get; }
 
         private string _shopName;
 
@@ -23,9 +25,9 @@ namespace DecideMyLunch.ViewModels
         #endregion
 
         #region Constructors
-        public ResultViewModel(LunchAlgorithm alg)
+        public ResultViewModel(ILunchAlgorithm alg)
         {
-            LunchAlgorithm = alg;
+            RandomLunchAlgorithm = alg;
         }
         #endregion
 
@@ -33,7 +35,7 @@ namespace DecideMyLunch.ViewModels
         public void DecideLunch()
         {
             //TODO: Animate decision with rolling letters.
-            var shop = LunchAlgorithm?.GetShop();
+            var shop = RandomLunchAlgorithm?.GetShop();
             ShopName = $"{shop?.Name}!";
         }
         #endregion

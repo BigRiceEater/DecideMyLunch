@@ -99,7 +99,7 @@ namespace DecideMyLunch.ViewModels
                 UpdateStatistics();
             });
 
-            ResultViewModel = new ResultViewModel(new LunchAlgorithm(_data));
+            ResultViewModel = new ResultViewModel(new RandomLunchAlgorithm(_data));
 
             AddShopViewModel = new AddShopViewModel(_data, UpdateAppStatus);
             EditShopViewModel = new EditShopViewModel(_data, UpdateAppStatus);

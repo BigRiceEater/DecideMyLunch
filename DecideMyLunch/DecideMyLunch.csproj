@@ -78,6 +78,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Abstract\LunchAlgorithm.cs" />
     <Compile Include="Commands\Shop\CancelCommand.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\Shop\DeleteShopCommand.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Events\ShopActionEventHandler.cs" />
     <Compile Include="Enums\EShopView.cs" />
     <Compile Include="Events\ShopActionErrorEventHandler.cs" />
+    <Compile Include="Interfaces\ILunchAlgorithm.cs" />
     <Compile Include="Helpers\ToggleShopViewVisibility.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\DeleteShopViewModel.cs" />
@@ -110,7 +112,7 @@
     </Compile>
     <Compile Include="Helpers\SqlDataStore.cs" />
     <Compile Include="Interfaces\IDataStore.cs" />
-    <Compile Include="Helpers\LunchAlgorithm.cs" />
+    <Compile Include="Helpers\RandomLunchAlgorithm.cs" />
     <Compile Include="Models\Shop.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\AddShopViewModel.cs" />
