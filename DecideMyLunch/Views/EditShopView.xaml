@@ -20,7 +20,7 @@
                 </ComboBox>
                 <StackPanel Orientation="Horizontal">
                     <Label>ID:</Label>
-                    <Label Content="{Binding SelectedShop.ID}" />
+                    <Label Content="{Binding SelectedShop.Guid}" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label>Name:</Label>

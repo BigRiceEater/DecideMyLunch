@@ -22,7 +22,7 @@ namespace DecideMyLunch.Helpers
                     conn.CreateTable<Shop>();
 
                     item.Name = item.Name.Trim();
-                    item.ID = this.GenerateGuid();
+                    item.Guid = this.GenerateGuid();
 
                     var sameShop = conn.Table<Shop>().
                         FirstOrDefault(_ => _.Name.ToLower().Equals(item.Name.ToLower()));
@@ -41,7 +41,7 @@ namespace DecideMyLunch.Helpers
                         {
                             var items = conn.Table<Shop>().OrderBy(
                                 _ => _.Name, StringComparer.OrdinalIgnoreCase).ToList();
-                            var pos = items.FindIndex(p => p.ID.Equals(item.ID));
+                            var pos = items.FindIndex(p => p.Guid.Equals(item.Guid));
                             ShopActionEventHandler?.Invoke(this, 
                                 new ShopActionEventArgs(EShopActionEvent.InsertedShop, item, pos));
                         }
@@ -139,18 +139,19 @@ namespace DecideMyLunch.Helpers
         public event ShopActionEventHandler ShopActionEventHandler;
         public event ShopActionErrorEventHandler ShopActionErrorEventHandler;
 
-        private string GenerateGuid()
+        private Guid GenerateGuid()
         {
             
             using (SQLiteConnection conn = new SQLiteConnection(App.DatabaseLocation))
             {
-                string id = "undefined";
+                Guid guid = Guid.Empty;
                 try
                 {
                     bool isGuidInvalid = true;
-                    do {
-                        id = Guid.NewGuid().ToString();
-                        var matchedList = conn.Table<Shop>().Where(i => i.ID == id).ToList();
+                    do
+                    {
+                        guid = Guid.NewGuid();
+                        var matchedList = conn.Table<Shop>().Where(i => i.Guid == guid).ToList();
                         isGuidInvalid = matchedList.FirstOrDefault() != null;
                     } while (isGuidInvalid);
                 }
@@ -159,7 +160,7 @@ namespace DecideMyLunch.Helpers
                     Debug.WriteLine(e.Message);
                 }
 
-                return id;
+                return guid;
             }
         }
     }
