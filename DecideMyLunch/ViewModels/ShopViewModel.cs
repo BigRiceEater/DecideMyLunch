@@ -89,12 +89,7 @@ namespace DecideMyLunch.ViewModels
 
         protected void RemoveShopFromList(Shop shop)
         {
-            //BUG: Remove is success but still appears in UI combo box, why?
             var success = Shops.Remove(shop);
-            if (!success)
-            {
-                //
-            }
         }
 
         public virtual void ShowView()
