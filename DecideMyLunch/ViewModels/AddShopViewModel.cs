@@ -25,6 +25,20 @@ namespace DecideMyLunch.ViewModels
             base (dataStore, del)
         {
             AddShopCommand = new AddShopCommand(this);
+            _data.ShopActionEventHandler += OnShopActionEventHandler;
+            _data.ShopActionErrorEventHandler += OnShopActionErrorEventHandler;
+        }
+
+        private void OnShopActionErrorEventHandler(object sender, ShopActionErrorEventArgs e)
+        {
+            if(e.Error == EShopActionError.ShopNameAlreadyExist)
+                UpdateAppStatus($"Shop {e.Shop.Name} already exists!");
+        }
+
+        private void OnShopActionEventHandler(object sender, ShopActionEventArgs e)
+        {
+            AddShopToList(e.Shop, e.Index.GetValueOrDefault());
+            UpdateAppStatus($"Added shop {e.Shop.Name}");
         }
 
         public void AddShop(Shop item)

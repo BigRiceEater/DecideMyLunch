@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using DecideMyLunch.Commands;
 using DecideMyLunch.Commands.Shop;
+using DecideMyLunch.Enums;
+using DecideMyLunch.Events;
 using DecideMyLunch.Interfaces;
 using DecideMyLunch.Models;
 
@@ -19,12 +21,18 @@ namespace DecideMyLunch.ViewModels
             base (dataStore, del)
         {
             EditShopCommand = new EditShopCommand(this);
+            _data.ShopActionEventHandler += OnShopActionEventHandler;
+        }
+
+        private void OnShopActionEventHandler(object sender, ShopActionEventArgs e)
+        {
+            if (e.EventType == EShopActionEvent.UpdatedShop)
+                UpdateAppStatus($"Updated shop {e.Shop.Name}");
         }
 
         public void UpdateShop(Shop shop)
         {
             _data.UpdateShop(shop);
-            UpdateAppStatus($"Updated shop {shop.Name}");
         }
     }
 }

@@ -9,6 +9,7 @@ namespace DecideMyLunch.Models
 {
     public class Shop
     {
+        //TODO: Use Guid structure instead of string
         [PrimaryKey]
         public string ID { get; set; }
 

@@ -61,7 +61,14 @@ namespace DecideMyLunch.Helpers
                 try
                 {
                     conn.CreateTable<Shop>();
-                    conn.Delete(item);
+                    var rows = conn.Delete(item);
+
+                    if (rows > 0)
+                    {
+                        ShopActionEventHandler?.Invoke(this, 
+                            new ShopActionEventArgs(EShopActionEvent.DeletedShop, item));
+                    }
+                    //TODO: event handler for exception and when rows less than zero
                 }
                 catch (Exception e)
                 {
@@ -77,7 +84,15 @@ namespace DecideMyLunch.Helpers
                 try
                 {
                     conn.CreateTable<Shop>();
-                    conn.Update(item);
+                    var rows = conn.Update(item);
+
+                    if (rows > 0)
+                    {
+                        ShopActionEventHandler?.Invoke(this,
+                            new ShopActionEventArgs(EShopActionEvent.UpdatedShop, item));
+                    }
+                    //TODO: Exception ShopErrorEventHandler
+
                 }
                 catch (Exception e)
                 {

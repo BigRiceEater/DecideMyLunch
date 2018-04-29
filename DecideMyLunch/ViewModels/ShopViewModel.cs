@@ -44,6 +44,7 @@ namespace DecideMyLunch.ViewModels
             get => _shops;
             set
             {
+                //TODO: can we use ?? null coalescing
                 if (_shops == null)
                 {
                     _shops = value;
@@ -64,45 +65,9 @@ namespace DecideMyLunch.ViewModels
             CancelCommand = new CancelCommand(this);
             UpdateAppStatus = del;
             _data = dataStore;
-            //BUG: Gets created n times for n subclass of ShopViewModel
-            _data.ShopActionErrorEventHandler += ShopActionErrorHandler;
-            _data.ShopActionEventHandler += ShopActionEventHandler;
             SelectedShop = new Shop();
             Visibility = Visibility.Collapsed;
             InitShops();
-        }
-
-        private void ShopActionEventHandler(object sender, Events.ShopActionEventArgs e)
-        {
-            switch (e.EventType)
-            {
-                case EShopActionEvent.InsertedShop:
-                    AddShopToList(e.Shop, e.Index ?? -1);
-                    UpdateAppStatus($"Added shop {e.Shop.Name}");
-                    break;
-                case EShopActionEvent.DeletedShop:
-                    RemoveShopFromList(e.Shop);
-                    UpdateAppStatus($"Deleted shop {e.Shop.Name}");
-                    break;
-                case EShopActionEvent.UpdatedShop:
-                    UpdateAppStatus($"Updated {e.Shop.Name}");
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
-
-        private void ShopActionErrorHandler(object sender, Events.ShopActionErrorEventArgs e)
-        {
-            switch (e.Error)
-            {
-                case EShopActionError.ShopNameAlreadyExist:
-                    UpdateAppStatus($"Shop {e.Shop.Name} already exists!");
-                    break;
-                default:
-                    UpdateAppStatus("Undefined error in add function");
-                    break;
-            }
         }
 
         private void InitShops()
@@ -124,7 +89,12 @@ namespace DecideMyLunch.ViewModels
 
         protected void RemoveShopFromList(Shop shop)
         {
-            Shops.Remove(shop);
+            //BUG: Remove is success but still appears in UI combo box, why?
+            var success = Shops.Remove(shop);
+            if (!success)
+            {
+                //
+            }
         }
 
         public virtual void ShowView()

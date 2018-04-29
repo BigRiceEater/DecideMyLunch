@@ -17,6 +17,7 @@ namespace DecideMyLunch.Interfaces
         List<Shop> GetAllShops();
         List<Shop> GetAvailableShops();
 
+        //TODO: Remove Handler from property name
         event ShopActionEventHandler ShopActionEventHandler;
         event ShopActionErrorEventHandler ShopActionErrorEventHandler;
     }

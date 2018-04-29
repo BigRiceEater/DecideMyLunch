@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using DecideMyLunch.Commands;
 using DecideMyLunch.Commands.Shop;
+using DecideMyLunch.Enums;
+using DecideMyLunch.Events;
 using DecideMyLunch.Interfaces;
 using DecideMyLunch.Models;
 
@@ -21,14 +23,22 @@ namespace DecideMyLunch.ViewModels
             base (dataStore, del)
         {
             DeleteShopCommand = new DeleteShopCommand(this);
+            _data.ShopActionEventHandler += OnShopActionEventHandler;
+        }
+
+        private void OnShopActionEventHandler(object sender, ShopActionEventArgs e)
+        {
+            if (e.EventType == EShopActionEvent.DeletedShop)
+            {
+                RemoveShopFromList(e.Shop);
+                UpdateAppStatus($"Deleted shop {e.Shop.Name}");
+            }
         }
 
         public void DeleteShop(Shop shop)
         {
             _data.DeleteShop(shop);
             SelectedShop = null;
-            RemoveShopFromList(shop);
-            UpdateAppStatus($"Deleted shop {shop.Name}");
         }
     }
 }
