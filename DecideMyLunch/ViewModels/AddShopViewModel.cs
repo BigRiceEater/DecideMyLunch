@@ -25,27 +25,6 @@ namespace DecideMyLunch.ViewModels
             base (dataStore, del)
         {
             AddShopCommand = new AddShopCommand(this);
-            dataStore.ShopActionEventHandler += (sender, args) =>
-            {
-                if (args.EventType == EShopActionEvent.InsertedShop)
-                {
-                    AddShopToList(args.Shop, args.Index ?? -1);
-                    UpdateAppStatus($"Added shop {args.Shop.Name}");
-                }
-            };
-            dataStore.ShopActionErrorEventHandler += (sender, args) =>
-            {
-                switch (args.Error)
-                {
-                    case EShopActionError.ShopNameAlreadyExist:
-                        UpdateAppStatus($"Shop {args.Shop.Name} already exists!");
-                        break;
-                    default:
-                        UpdateAppStatus("Undefined error in add function");
-                        break;
-                }
-
-            };
         }
 
         public void AddShop(Shop item)
