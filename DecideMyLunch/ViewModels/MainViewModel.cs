@@ -25,14 +25,6 @@ namespace DecideMyLunch.ViewModels
 
     public class MainViewModel : BaseViewModel
     {
-
-        private string _result;
-        public string Result
-        {
-            get => _result;
-            set { _result = value; OnPropertyChanged(nameof(Result));}
-        }
-
         private string _applicationStatus;
         public string ApplicationStatus
         {
@@ -47,16 +39,23 @@ namespace DecideMyLunch.ViewModels
             get => $"Number of shops: {_totalNumShops}";
             set { _totalNumShops = value; OnPropertyChanged(nameof(TotalNumShops));}
         }
-           
+
+        //TODO: Add code regions 
+
+        private ResultViewModel _resultViewModel;
+
+        public ResultViewModel ResultViewModel
+        {
+            get => _resultViewModel;
+            set { _resultViewModel = value; OnPropertyChanged(nameof(ResultViewModel));}
+        }
+
 
         private AddShopViewModel _addShopViewModel;
         public AddShopViewModel AddShopViewModel
         {
             get => _addShopViewModel;
-            set
-            {
-                _addShopViewModel = value; OnPropertyChanged(nameof(AddShopViewModel));
-            }
+            set { _addShopViewModel = value; OnPropertyChanged(nameof(AddShopViewModel)); }
         }
 
         private EditShopViewModel _editShopViewModel;
@@ -79,8 +78,8 @@ namespace DecideMyLunch.ViewModels
         public ICommand ShowDeleteShopCommand { get; set; }
 
         private readonly IDataStore _data;
-        private LunchAlgorithm _lunchAlgorithm;
         private readonly ToggleShopViewVisibility _visibilityToggler;
+
         public MainViewModel() 
         {
             DecideLunchCommand = new DecideLunchCommand(this);
@@ -88,17 +87,16 @@ namespace DecideMyLunch.ViewModels
             ShowEditShopCommand = new ShowEditShopCommand(this);
             ShowDeleteShopCommand = new ShowDeleteShopCommand(this);
 
-            Result = "Nothing yet";
-
             _data = new SqlDataStore();
 
-            _lunchAlgorithm = new LunchAlgorithm(_data);
-
+            // TODO: UpdateAppStatus into event ?
             UpdateAppStatus = new UpdateAppStatusDelegate((msg) =>
             {
                 ApplicationStatus = msg;
                 UpdateStatistics();
             });
+
+            ResultViewModel = new ResultViewModel(new LunchAlgorithm(_data));
 
             AddShopViewModel = new AddShopViewModel(_data, UpdateAppStatus);
             EditShopViewModel = new EditShopViewModel(_data, UpdateAppStatus);
@@ -124,8 +122,7 @@ namespace DecideMyLunch.ViewModels
 
         public void DecideLunch()
         {
-            var shop = _lunchAlgorithm.GetShop();
-            Result = $"Let's go to {shop.Name}!";
+            ResultViewModel.DecideLunch();
             UpdateAppStatus("Lunch decided!");
         }
 

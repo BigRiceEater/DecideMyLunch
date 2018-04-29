@@ -40,7 +40,8 @@
             </StackPanel>
 
             <StackPanel x:Name="OutputStack" Grid.Column="1" Margin="20" Orientation="Vertical">
-                <TextBlock Text="{Binding Result}" Background="Azure" />
+                <views:ResultView
+                    DataContext="{Binding ResultViewModel}"/>
                 <views:AddShopView 
                     DataContext="{Binding AddShopViewModel}" 
                     Visibility="{Binding Visibility}" />
