@@ -32,11 +32,28 @@ namespace DecideMyLunch.ViewModels
         #endregion
 
         #region Command Callbacks
-        public void DecideLunch()
+        public async void DecideLunch()
         {
-            //TODO: Animate decision with rolling letters.
-            var shop = RandomLunchAlgorithm?.GetShop();
-            ShopName = $"{shop?.Name}!";
+            var r = new Random((int)System.DateTime.Today.Ticks);
+            await Task.Run(async () => {
+
+                var log = 1f;
+                var it = r.Next(30, 40);
+                for (int cycles = 0; cycles < it; ++cycles)
+                {
+                    ShopName = AnimateShopNameRandomAlphabet.GetName(r.Next(5, 10));
+
+                    if (cycles == it - 1)
+                        await Task.Delay(1250);
+                    else
+                        await Task.Delay((int)(cycles * cycles * 0.5) + r.Next(0, 10));
+                }
+                var shop = RandomLunchAlgorithm?.GetShop();
+                ShopName = $"{shop?.Name}!";
+            });
+
+            //TODO: Animate each letter individually.
+
         }
         #endregion
     }
