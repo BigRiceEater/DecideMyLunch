@@ -17,6 +17,8 @@ namespace DecideMyLunch.Helpers
         public override Shop GetShop()
         {
             var shops = _dataService.GetAvailableShops();
+            if (shops.Count < 1)
+                return null;
             var index = _generator.Next(maxValue:shops.Count);
             return shops[index];
         }
