@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DecideMyLunch.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace DecideMyLunch.Helpers
     public class AnimateShopNameRandomAlphabet
     {
         private static Random r = new Random((int)System.DateTime.Today.Ticks);
-        public static string GetName(int numLetters)
+        private static string GetName(int numLetters)
         {
             var result = "";
 
@@ -26,6 +27,23 @@ namespace DecideMyLunch.Helpers
             }
 
             return result;
+        }
+
+        public static async Task AnimateResult(ResultViewModel vm)
+        {
+            var r = new Random((int)System.DateTime.Today.Ticks);
+            await Task.Run(async () => {
+                var it = r.Next(30, 40);
+                for (int cycles = 0; cycles < it; ++cycles)
+                {
+                    vm.ShopName = GetName(r.Next(5, 10));
+
+                    if (cycles == it - 1)
+                        await Task.Delay(1250);
+                    else
+                        await Task.Delay((int)(cycles * cycles * 0.5) + r.Next(0, 10));
+                }
+            });
         }
     }
 }
