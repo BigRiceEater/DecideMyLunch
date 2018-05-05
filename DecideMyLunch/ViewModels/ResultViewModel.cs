@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DecideMyLunch.Abstract;
+using DecideMyLunch.Events;
 using DecideMyLunch.Helpers;
 using DecideMyLunch.Interfaces;
 
@@ -24,6 +25,10 @@ namespace DecideMyLunch.ViewModels
         }
         #endregion
 
+        #region Events
+        public event ResultEventHandler ResultEvent; 
+        #endregion
+
         #region Constructors
         public ResultViewModel(ILunchAlgorithm alg)
         {
@@ -39,6 +44,8 @@ namespace DecideMyLunch.ViewModels
 
             var shop = RandomLunchAlgorithm?.GetShop();
             ShopName = $"{shop?.Name}!";
+
+            ResultEvent?.Invoke(this, null);
 
         }
         #endregion

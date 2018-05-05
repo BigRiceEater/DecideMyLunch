@@ -11,10 +11,17 @@ namespace DecideMyLunch.Commands
     public class DecideLunchCommand : Command
     {
         private readonly MainViewModel _vm;
+        //TODO: Move to Command abstract class and modify base CanExecute to use IsBusy
+        public bool IsBusy { get; set; } = false;
 
         public DecideLunchCommand(MainViewModel viewModel)
         {
             _vm = viewModel;
+        }
+
+        public override bool CanExecute(object parameter)
+        {
+            return ! IsBusy;
         }
 
         public override void Execute(object parameter)

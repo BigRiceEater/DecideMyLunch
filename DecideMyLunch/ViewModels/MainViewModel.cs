@@ -71,6 +71,7 @@ namespace DecideMyLunch.ViewModels
         #endregion
 
         #region Commands
+        //TODO: Change ICommand to abstract Command class to allow base member usage
         public ICommand DecideLunchCommand { get; set; }
         public ICommand ShowAddShopCommand { get; set; }
         public ICommand ShowEditShopCommand { get; set; }
@@ -116,6 +117,16 @@ namespace DecideMyLunch.ViewModels
             UpdateStatistics();
             ApplicationStatus = "Ready";
 
+            ResultViewModel.ResultEvent += ResultViewModel_ResultEvent;
+
+        }
+        #endregion
+
+        #region Events
+        private void ResultViewModel_ResultEvent(object sender, ResultEventArgs e)
+        {
+            (DecideLunchCommand as DecideLunchCommand).IsBusy = false;
+            UpdateAppStatus("Lunch decided!");
         }
         #endregion
 
@@ -130,7 +141,7 @@ namespace DecideMyLunch.ViewModels
         public void DecideLunch()
         {
             ResultViewModel.DecideLunch();
-            UpdateAppStatus("Lunch decided!");
+            (DecideLunchCommand as DecideLunchCommand).IsBusy = true;
         }
 
         public void ShowAddShop()

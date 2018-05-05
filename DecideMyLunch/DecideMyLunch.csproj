@@ -89,6 +89,7 @@
     <Compile Include="Commands\Show\ShowEditShopCommand.cs" />
     <Compile Include="Enums\EShopActionError.cs" />
     <Compile Include="Enums\EShopActionEvent.cs" />
+    <Compile Include="Events\ResultEventHandler.cs" />
     <Compile Include="Events\ShopActionEventHandler.cs" />
     <Compile Include="Enums\EShopView.cs" />
     <Compile Include="Events\ShopActionErrorEventHandler.cs" />
